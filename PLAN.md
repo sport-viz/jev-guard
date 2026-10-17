@@ -367,6 +367,21 @@ development doesn't trip self-protection. Promoting a change is an explicit
    - Verify with `/hooks`, then live tests in a scratch directory: a routine edit passes, a
      risky-but-harmless decoy command gets ask or deny, and a Jev outage (bad API key in env)
      gets ask.
+   - **Done 2026-10-16.**
+     - `scripts/install.sh` runs the tests, copies the guard to `~/.claude/jev-guard`, builds
+       its venv from `uv.lock`, and smoke-tests the installed copy.
+     - `scripts/configure_settings.py` added the hook after you confirmed. It's idempotent,
+       backs the file up to `~/.claude/backups/`, and `--remove` undoes it.
+     - Live checks in this session:
+       - an `echo` of a fork-bomb string was blocked by the hard rule before running;
+       - a test run went through Jev and passed (Jev 215 ms, hook 459 ms total, including
+         reading a ~2.6 MB transcript);
+       - both are logged in `decisions.jsonl`.
+     - Known limitation: the guard sees the tool call, not what a script does once running.
+       `scripts/install.sh`, or any script Claude writes and then runs, can change files the
+       guard would protect from a direct Edit or Bash call. Claude Code's permission rules
+       and the auto-mode classifier still run afterwards; the guard adds a layer and doesn't
+       replace them.
 5. **Operate**
    - Review `decisions.jsonl` after a few days.
    - Promote surprising decisions into `evals/cases.jsonl` as labeled cases.

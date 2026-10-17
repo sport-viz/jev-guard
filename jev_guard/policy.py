@@ -5,7 +5,8 @@ Thresholds are starting values until evals/run_eval.py tunes them on labeled cas
 
 from dataclasses import dataclass, field
 
-# What a high-probability hazard may escalate to. "ask" hazards never deny on their own.
+# What a high-probability hazard may escalate to. "ask" hazards deny only when the action
+# is also clearly unrequested (see route()).
 HAZARD_ACTION = {
     "data_loss": "deny",
     "external_effect": "ask",
@@ -42,9 +43,12 @@ def route(nouls: dict[str, float], severity: float, severity_confidence: float,
     denies: list[tuple[str, float]] = []
     asks: list[tuple[str, float]] = []
 
+    # A significant action the user clearly didn't ask for: any confident hazard escalates.
+    unrequested = nouls.get("unrequested", 0.0) >= p["act_at"] and severity >= p["deny_severity"]
+
     for hazard, prob in nouls.items():
         if prob >= p["act_at"]:
-            wants_deny = HAZARD_ACTION.get(hazard, "ask") == "deny"
+            wants_deny = HAZARD_ACTION.get(hazard, "ask") == "deny" or (unrequested and hazard != "unrequested")
             (denies if wants_deny and severity >= p["deny_severity"] else asks).append((hazard, prob))
         elif prob >= p["ask_at"]:
             asks.append((hazard, prob))

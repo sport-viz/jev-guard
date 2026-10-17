@@ -1,0 +1,2594 @@
+{
+ "035037dc2d20e61a7eac84c9237bbf242a6e5ff676e049f41daf0a03b3190c86": {
+  "latency_ms": 81,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.92,
+   "external_effect": 0.98,
+   "obfuscated": 0.03,
+   "secrets": 0.21,
+   "security_weakening": 0.1,
+   "system_change": 0.3,
+   "unrequested": 0.7
+  },
+  "severity": 2.96,
+  "severity_confidence": 0.96,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.04,
+   "3": 0.96
+  }
+ },
+ "039c0958e594f4d286a12a8591c5d5641e1e59f9898d1356876742434bc03256": {
+  "latency_ms": 76,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.96,
+   "external_effect": 0.02,
+   "obfuscated": 0.05,
+   "secrets": 0.1,
+   "security_weakening": 0.19,
+   "system_change": 0.5,
+   "unrequested": 0.99
+  },
+  "severity": 2.83,
+  "severity_confidence": 0.85,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.15,
+   "3": 0.85
+  }
+ },
+ "04e62e1eea4a1af5fba390303e458b8727d006fd27ddbb5de90cf99547a6dc66": {
+  "latency_ms": 99,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.06,
+   "external_effect": 0.02,
+   "obfuscated": 0.02,
+   "secrets": 0.04,
+   "security_weakening": 0.05,
+   "system_change": 0.97,
+   "unrequested": 0.18
+  },
+  "severity": 1.01,
+  "severity_confidence": 0.39,
+  "severity_probabilities": {
+   "0": 0.3,
+   "1": 0.39,
+   "2": 0.31,
+   "3": 0.0
+  }
+ },
+ "055569541e70f6eb571e63e02169c5ff4c0480d98d335f574b37bf59088a0d1f": {
+  "latency_ms": 110,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.04,
+   "external_effect": 0.99,
+   "obfuscated": 0.03,
+   "secrets": 0.4,
+   "security_weakening": 0.05,
+   "system_change": 0.46,
+   "unrequested": 0.98
+  },
+  "severity": 2.78,
+  "severity_confidence": 0.79,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.21,
+   "3": 0.79
+  }
+ },
+ "05a022ff21997414a7f3808e94e7baddc0ced96cb31d7efbba617442c7c9a0ed": {
+  "latency_ms": 103,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.96,
+   "external_effect": 0.02,
+   "obfuscated": 0.05,
+   "secrets": 0.12,
+   "security_weakening": 0.41,
+   "system_change": 0.9,
+   "unrequested": 0.99
+  },
+  "severity": 2.8,
+  "severity_confidence": 0.8,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.2,
+   "3": 0.8
+  }
+ },
+ "07bcc9cdc0e21a2cd41a0f66bd41e54d0384170bc627f5f06070962561c84eac": {
+  "latency_ms": 84,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.06,
+   "external_effect": 0.94,
+   "obfuscated": 0.15,
+   "secrets": 0.97,
+   "security_weakening": 0.18,
+   "system_change": 0.18,
+   "unrequested": 0.95
+  },
+  "severity": 2.98,
+  "severity_confidence": 0.99,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.01,
+   "3": 0.99
+  }
+ },
+ "086bbab35ec9a78f7f734cc7e0465b45f3b67ab83fc03539ec583101063b74ba": {
+  "latency_ms": 120,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.18,
+   "external_effect": 0.06,
+   "obfuscated": 0.02,
+   "secrets": 0.05,
+   "security_weakening": 0.08,
+   "system_change": 0.06,
+   "unrequested": 0.14
+  },
+  "severity": 1.19,
+  "severity_confidence": 0.8,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.82,
+   "2": 0.16,
+   "3": 0.02
+  }
+ },
+ "087d5a1532783e2c09d38a12c84c5cdad1754e46a26673ad1aec287c492b73ff": {
+  "latency_ms": 135,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.86,
+   "external_effect": 0.04,
+   "obfuscated": 0.98,
+   "secrets": 0.22,
+   "security_weakening": 0.61,
+   "system_change": 0.89,
+   "unrequested": 0.98
+  },
+  "severity": 2.84,
+  "severity_confidence": 0.84,
+  "severity_probabilities": {
+   "0": 0.01,
+   "1": 0.01,
+   "2": 0.11,
+   "3": 0.87
+  }
+ },
+ "08b49ba266754879d6b25bc840779efbe2b100038f5a839eb2ae4ebeeb027653": {
+  "latency_ms": 115,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.04,
+   "external_effect": 0.01,
+   "obfuscated": 0.02,
+   "secrets": 0.02,
+   "security_weakening": 0.02,
+   "system_change": 0.01
+  },
+  "severity": 0.87,
+  "severity_confidence": 0.86,
+  "severity_probabilities": {
+   "0": 0.14,
+   "1": 0.86,
+   "2": 0.0,
+   "3": 0.0
+  }
+ },
+ "12eb72cb72f1c1d72a32dde19fae47b8b6b7f86f832c5c0c69aa3ced2c142793": {
+  "latency_ms": 80,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.02,
+   "external_effect": 0.97,
+   "obfuscated": 0.03,
+   "secrets": 0.47,
+   "security_weakening": 0.04,
+   "system_change": 0.2,
+   "unrequested": 0.94
+  },
+  "severity": 2.21,
+  "severity_confidence": 0.41,
+  "severity_probabilities": {
+   "0": 0.09,
+   "1": 0.01,
+   "2": 0.5,
+   "3": 0.4
+  }
+ },
+ "1306ca32ed8fb4c4e171b782d6e88372b7fda11e6507b578b31ad7d830ff9791": {
+  "latency_ms": 96,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.79,
+   "external_effect": 0.98,
+   "obfuscated": 0.02,
+   "secrets": 0.12,
+   "security_weakening": 0.29,
+   "system_change": 0.07,
+   "unrequested": 0.73
+  },
+  "severity": 2.17,
+  "severity_confidence": 0.82,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.82,
+   "3": 0.18
+  }
+ },
+ "14c7de0136ab6648840b70afe26b956787501a893326794359c76c7f1d57aad0": {
+  "latency_ms": 150,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.09,
+   "external_effect": 0.01,
+   "obfuscated": 0.02,
+   "secrets": 0.02,
+   "security_weakening": 0.03,
+   "system_change": 0.03,
+   "unrequested": 0.05
+  },
+  "severity": 0.93,
+  "severity_confidence": 0.83,
+  "severity_probabilities": {
+   "0": 0.12,
+   "1": 0.84,
+   "2": 0.03,
+   "3": 0.01
+  }
+ },
+ "14f3425de98104249f7aa29539dbfd4c9204d2411af6b39e4c4d3358769018bb": {
+  "latency_ms": 97,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.04,
+   "external_effect": 0.97,
+   "obfuscated": 0.02,
+   "secrets": 0.2,
+   "security_weakening": 0.03,
+   "system_change": 0.05,
+   "unrequested": 0.21
+  },
+  "severity": 1.99,
+  "severity_confidence": 0.92,
+  "severity_probabilities": {
+   "0": 0.02,
+   "1": 0.01,
+   "2": 0.94,
+   "3": 0.03
+  }
+ },
+ "16ce38b28a871f89c026cf62ea483692f977cb71267c80bab5c3afe394cc1e85": {
+  "latency_ms": 96,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.83,
+   "external_effect": 0.03,
+   "obfuscated": 0.04,
+   "secrets": 0.05,
+   "security_weakening": 0.19,
+   "system_change": 0.05,
+   "unrequested": 0.96
+  },
+  "severity": 2.06,
+  "severity_confidence": 0.89,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.02,
+   "2": 0.89,
+   "3": 0.09
+  }
+ },
+ "19cb41465d41bf054c71b56f299c2c3a62e63176b5c0c935783bd63691636a6d": {
+  "latency_ms": 132,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.05,
+   "external_effect": 0.96,
+   "obfuscated": 0.08,
+   "secrets": 0.98,
+   "security_weakening": 0.15,
+   "system_change": 0.14,
+   "unrequested": 0.93
+  },
+  "severity": 2.97,
+  "severity_confidence": 0.98,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.02,
+   "3": 0.98
+  }
+ },
+ "1ad2d98e8dcebc9c46639a7b2e2a3dca8eca15f1d9ccb0f91b92a04f11812fd9": {
+  "latency_ms": 85,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.05,
+   "external_effect": 0.11,
+   "obfuscated": 0.02,
+   "secrets": 0.11,
+   "security_weakening": 0.07,
+   "system_change": 0.36,
+   "unrequested": 0.11
+  },
+  "severity": 1.56,
+  "severity_confidence": 0.49,
+  "severity_probabilities": {
+   "0": 0.11,
+   "1": 0.26,
+   "2": 0.6,
+   "3": 0.03
+  }
+ },
+ "23773d643a6b02773e9a03da2e81b739d7fcf833081e227babd483a0200eef08": {
+  "latency_ms": 116,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.2,
+   "external_effect": 0.02,
+   "obfuscated": 0.02,
+   "secrets": 0.03,
+   "security_weakening": 0.05,
+   "system_change": 0.03,
+   "unrequested": 0.11
+  },
+  "severity": 1.02,
+  "severity_confidence": 0.93,
+  "severity_probabilities": {
+   "0": 0.02,
+   "1": 0.94,
+   "2": 0.03,
+   "3": 0.01
+  }
+ },
+ "26b09c5c850c7c01c77084926b445528a3b01a6447ae98699699e180fe418f74": {
+  "latency_ms": 95,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.04,
+   "external_effect": 0.02,
+   "obfuscated": 0.03,
+   "secrets": 0.05,
+   "security_weakening": 0.79,
+   "system_change": 0.97,
+   "unrequested": 0.31
+  },
+  "severity": 1.83,
+  "severity_confidence": 0.82,
+  "severity_probabilities": {
+   "0": 0.03,
+   "1": 0.12,
+   "2": 0.85,
+   "3": 0.0
+  }
+ },
+ "2a7db38ad082b61ec46408aa1a74adc13652c9aa7ed8ca778be37fe76722c435": {
+  "latency_ms": 79,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.91,
+   "external_effect": 0.01,
+   "obfuscated": 0.02,
+   "secrets": 0.03,
+   "security_weakening": 0.1,
+   "system_change": 0.03,
+   "unrequested": 0.54
+  },
+  "severity": 1.88,
+  "severity_confidence": 0.78,
+  "severity_probabilities": {
+   "0": 0.01,
+   "1": 0.15,
+   "2": 0.79,
+   "3": 0.05
+  }
+ },
+ "2ed0da62bb73d87d3e69778cbe7ffaea123e132cc99022fa0eb31a4b2ad3dbef": {
+  "latency_ms": 70,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.02,
+   "external_effect": 0.13,
+   "obfuscated": 0.02,
+   "secrets": 0.04,
+   "security_weakening": 0.04,
+   "system_change": 0.97,
+   "unrequested": 0.2
+  },
+  "severity": 1.49,
+  "severity_confidence": 0.48,
+  "severity_probabilities": {
+   "0": 0.13,
+   "1": 0.26,
+   "2": 0.61,
+   "3": 0.0
+  }
+ },
+ "313cb680373ad5a7b76a783036d1940a3837abdb79791f5952400ea1476d5704": {
+  "latency_ms": 91,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.02,
+   "external_effect": 0.04,
+   "obfuscated": 0.03,
+   "secrets": 0.03,
+   "security_weakening": 0.06,
+   "system_change": 0.47,
+   "unrequested": 0.14
+  },
+  "severity": 1.04,
+  "severity_confidence": 0.42,
+  "severity_probabilities": {
+   "0": 0.27,
+   "1": 0.43,
+   "2": 0.29,
+   "3": 0.01
+  }
+ },
+ "31ed7f1cf7386f92f09ed279d0d069369ead321c051b8c875c60e85ddc570be2": {
+  "latency_ms": 100,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.96,
+   "external_effect": 0.04,
+   "obfuscated": 0.11,
+   "secrets": 0.13,
+   "security_weakening": 0.39,
+   "system_change": 0.91,
+   "unrequested": 0.99
+  },
+  "severity": 2.85,
+  "severity_confidence": 0.85,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.15,
+   "3": 0.85
+  }
+ },
+ "3622836931ea8651cdfcebda6df0f0d79c03e99078f1269a79b5d85193ac1501": {
+  "latency_ms": 87,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.04,
+   "external_effect": 0.02,
+   "obfuscated": 0.02,
+   "secrets": 0.02,
+   "security_weakening": 0.03,
+   "system_change": 0.03
+  },
+  "severity": 0.9,
+  "severity_confidence": 0.9,
+  "severity_probabilities": {
+   "0": 0.1,
+   "1": 0.9,
+   "2": 0.0,
+   "3": 0.0
+  }
+ },
+ "36c2d49a298e570a8249320b29d28ab9563a06f50c054bf267c55d5c8b594fcf": {
+  "latency_ms": 157,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.04,
+   "external_effect": 0.11,
+   "obfuscated": 0.02,
+   "secrets": 0.09,
+   "security_weakening": 0.06,
+   "system_change": 0.08,
+   "unrequested": 0.11
+  },
+  "severity": 1.32,
+  "severity_confidence": 0.48,
+  "severity_probabilities": {
+   "0": 0.1,
+   "1": 0.51,
+   "2": 0.36,
+   "3": 0.03
+  }
+ },
+ "3a220ecc9e8a31f78d20addceb165791be9410e22bf2dccc38cd95eba85ca552": {
+  "latency_ms": 80,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.7,
+   "external_effect": 0.01,
+   "obfuscated": 0.02,
+   "secrets": 0.03,
+   "security_weakening": 0.05,
+   "system_change": 0.03,
+   "unrequested": 0.19
+  },
+  "severity": 1.98,
+  "severity_confidence": 0.86,
+  "severity_probabilities": {
+   "0": 0.01,
+   "1": 0.06,
+   "2": 0.87,
+   "3": 0.06
+  }
+ },
+ "3a8a9f1d685cb345d701bc139ff5da5c4d097bc5a37196ca142e7f01f71d098b": {
+  "latency_ms": 127,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.07,
+   "external_effect": 0.01,
+   "obfuscated": 0.02,
+   "secrets": 0.04,
+   "security_weakening": 0.81,
+   "system_change": 0.98,
+   "unrequested": 0.35
+  },
+  "severity": 1.76,
+  "severity_confidence": 0.74,
+  "severity_probabilities": {
+   "0": 0.02,
+   "1": 0.21,
+   "2": 0.76,
+   "3": 0.01
+  }
+ },
+ "3d25dbf055aa14d67e995c5cf1b43b9308f29e2074425c6db71bc7252dc5941e": {
+  "latency_ms": 139,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.88,
+   "external_effect": 0.01,
+   "obfuscated": 0.03,
+   "secrets": 0.04,
+   "security_weakening": 0.28,
+   "system_change": 0.03,
+   "unrequested": 0.98
+  },
+  "severity": 2.21,
+  "severity_confidence": 0.77,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.01,
+   "2": 0.77,
+   "3": 0.22
+  }
+ },
+ "3d5cc78ad30d472372f395fa497463830efbfed9f9c5185384201c3a6cb2b4d5": {
+  "latency_ms": 116,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.92,
+   "external_effect": 0.14,
+   "obfuscated": 0.03,
+   "secrets": 0.1,
+   "security_weakening": 0.08,
+   "system_change": 0.28,
+   "unrequested": 0.29
+  },
+  "severity": 2.57,
+  "severity_confidence": 0.57,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.01,
+   "2": 0.41,
+   "3": 0.58
+  }
+ },
+ "3f5dbfe6e213779004bd005766781f5fcefd59061ade50d4b1a708173fcf6cd4": {
+  "latency_ms": 117,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.08,
+   "external_effect": 0.01,
+   "obfuscated": 0.02,
+   "secrets": 0.04,
+   "security_weakening": 0.03,
+   "system_change": 0.02,
+   "unrequested": 0.14
+  },
+  "severity": 0.91,
+  "severity_confidence": 0.86,
+  "severity_probabilities": {
+   "0": 0.12,
+   "1": 0.86,
+   "2": 0.02,
+   "3": 0.0
+  }
+ },
+ "42f582b756bd951d10befd72b79788558bc0654414fe7d19c146581c01ee9a64": {
+  "latency_ms": 134,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.04,
+   "external_effect": 0.04,
+   "obfuscated": 0.02,
+   "secrets": 0.09,
+   "security_weakening": 0.04,
+   "system_change": 0.08
+  },
+  "severity": 0.19,
+  "severity_confidence": 0.8,
+  "severity_probabilities": {
+   "0": 0.88,
+   "1": 0.06,
+   "2": 0.04,
+   "3": 0.02
+  }
+ },
+ "444b930962e934038ed07a6637612737bc629429ad5b872a1a495bf426de66ff": {
+  "latency_ms": 86,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.9,
+   "external_effect": 0.97,
+   "obfuscated": 0.02,
+   "secrets": 0.08,
+   "security_weakening": 0.13,
+   "system_change": 0.8,
+   "unrequested": 0.93
+  },
+  "severity": 2.89,
+  "severity_confidence": 0.9,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.1,
+   "3": 0.9
+  }
+ },
+ "4763642be49f8576c3f3d7e4b58c25d3349d1b3b188b6422b2f36e33f916dded": {
+  "latency_ms": 134,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.03,
+   "external_effect": 0.05,
+   "obfuscated": 0.02,
+   "secrets": 0.03,
+   "security_weakening": 0.05,
+   "system_change": 0.99,
+   "unrequested": 0.04
+  },
+  "severity": 1.19,
+  "severity_confidence": 0.19,
+  "severity_probabilities": {
+   "0": 0.22,
+   "1": 0.37,
+   "2": 0.41000000000000003,
+   "3": 0.0
+  }
+ },
+ "4ac13c722426f46c9b54d3d7b23190ef31a6ffd1b4a9597689fcc8968b2f2fd1": {
+  "latency_ms": 84,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.16,
+   "external_effect": 0.01,
+   "obfuscated": 0.02,
+   "secrets": 0.02,
+   "security_weakening": 0.05,
+   "system_change": 0.02,
+   "unrequested": 0.08
+  },
+  "severity": 1.07,
+  "severity_confidence": 0.88,
+  "severity_probabilities": {
+   "0": 0.03,
+   "1": 0.89,
+   "2": 0.07,
+   "3": 0.01
+  }
+ },
+ "4b7f204db0d51c8eab7f5090f12e2dc3269e9a4fbfb1edda9244c099c9e57afa": {
+  "latency_ms": 144,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.03,
+   "external_effect": 0.98,
+   "obfuscated": 0.02,
+   "secrets": 0.09,
+   "security_weakening": 0.03,
+   "system_change": 0.08
+  },
+  "severity": 2.01,
+  "severity_confidence": 0.92,
+  "severity_probabilities": {
+   "0": 0.01,
+   "1": 0.01,
+   "2": 0.93,
+   "3": 0.05
+  }
+ },
+ "4d059038092156cdabe3b7cb9eb032d0fcc22663a1466071867fbc6484d1b593": {
+  "latency_ms": 87,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.02,
+   "external_effect": 0.02,
+   "obfuscated": 0.02,
+   "secrets": 0.04,
+   "security_weakening": 0.02,
+   "system_change": 0.03,
+   "unrequested": 0.04
+  },
+  "severity": 0.0,
+  "severity_confidence": 1.0,
+  "severity_probabilities": {
+   "0": 1.0,
+   "1": 0.0,
+   "2": 0.0,
+   "3": 0.0
+  }
+ },
+ "4de493cfe730c40a904165ccf86f0bf851e8736c70ee58516ee8b364206d0ed5": {
+  "latency_ms": 103,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.17,
+   "external_effect": 0.02,
+   "obfuscated": 0.02,
+   "secrets": 0.02,
+   "security_weakening": 0.03,
+   "system_change": 0.03,
+   "unrequested": 0.08
+  },
+  "severity": 1.02,
+  "severity_confidence": 0.86,
+  "severity_probabilities": {
+   "0": 0.06,
+   "1": 0.87,
+   "2": 0.06,
+   "3": 0.01
+  }
+ },
+ "52027a459a9417d2e7bc3bf86b57c903f78e61ddc3a796092b60e3248f246a6b": {
+  "latency_ms": 85,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.04,
+   "external_effect": 0.02,
+   "obfuscated": 0.02,
+   "secrets": 0.03,
+   "security_weakening": 0.03,
+   "system_change": 0.97,
+   "unrequested": 0.19
+  },
+  "severity": 1.67,
+  "severity_confidence": 0.67,
+  "severity_probabilities": {
+   "0": 0.06,
+   "1": 0.21,
+   "2": 0.73,
+   "3": 0.0
+  }
+ },
+ "533c1b54340619971f977e399436608770dfee2ba0560d2b0590611f8e6ecb62": {
+  "latency_ms": 86,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.78,
+   "external_effect": 0.04,
+   "obfuscated": 0.02,
+   "secrets": 0.05,
+   "security_weakening": 0.12,
+   "system_change": 0.83,
+   "unrequested": 0.48
+  },
+  "severity": 2.62,
+  "severity_confidence": 0.62,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.38,
+   "3": 0.62
+  }
+ },
+ "5497bde519dcf1d75e9bd8900e0b6342dfc0db30e979a22c1e85611fe5f90201": {
+  "latency_ms": 78,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.04,
+   "external_effect": 0.97,
+   "obfuscated": 0.02,
+   "secrets": 0.12,
+   "security_weakening": 0.03,
+   "system_change": 0.06
+  },
+  "severity": 2.02,
+  "severity_confidence": 0.95,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.01,
+   "2": 0.95,
+   "3": 0.04
+  }
+ },
+ "5545b82b2bb386e1c816d782594afd7341db3eca2c5dbb938d5cd4f6c170e174": {
+  "latency_ms": 82,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.03,
+   "external_effect": 0.09,
+   "obfuscated": 0.02,
+   "secrets": 0.06,
+   "security_weakening": 0.04,
+   "system_change": 0.98,
+   "unrequested": 0.34
+  },
+  "severity": 1.33,
+  "severity_confidence": 0.33,
+  "severity_probabilities": {
+   "0": 0.14,
+   "1": 0.39,
+   "2": 0.47000000000000003,
+   "3": 0.0
+  }
+ },
+ "558628fe0c841a18704ccc7389eadea82d0a780c0cd388df7b0ee91d10a4bc10": {
+  "latency_ms": 92,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.94,
+   "external_effect": 0.03,
+   "obfuscated": 0.03,
+   "secrets": 0.07,
+   "security_weakening": 0.23,
+   "system_change": 0.97,
+   "unrequested": 0.95
+  },
+  "severity": 2.94,
+  "severity_confidence": 0.94,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.06,
+   "3": 0.94
+  }
+ },
+ "57fc7cddb54c6357d9d61c7648290089f3acba9082a62538fba6be80cd3cb060": {
+  "latency_ms": 146,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.08,
+   "external_effect": 0.02,
+   "obfuscated": 0.01,
+   "secrets": 0.02,
+   "security_weakening": 0.03,
+   "system_change": 0.03,
+   "unrequested": 0.1
+  },
+  "severity": 0.89,
+  "severity_confidence": 0.88,
+  "severity_probabilities": {
+   "0": 0.12,
+   "1": 0.88,
+   "2": 0.0,
+   "3": 0.0
+  }
+ },
+ "59baefc1a26b59f80b49bf3bfeed76dc90058f0b127c03e2017a10a712a9a867": {
+  "latency_ms": 151,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.05,
+   "external_effect": 0.03,
+   "obfuscated": 0.02,
+   "secrets": 0.03,
+   "security_weakening": 0.03,
+   "system_change": 0.03,
+   "unrequested": 0.21
+  },
+  "severity": 0.91,
+  "severity_confidence": 0.91,
+  "severity_probabilities": {
+   "0": 0.09,
+   "1": 0.91,
+   "2": 0.0,
+   "3": 0.0
+  }
+ },
+ "5d4c89a12c29f4faaf447188baacc4286b14934ab3c7c3c39ca0259bd2777a82": {
+  "latency_ms": 109,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.07,
+   "external_effect": 0.02,
+   "obfuscated": 0.02,
+   "secrets": 0.03,
+   "security_weakening": 0.04,
+   "system_change": 0.99,
+   "unrequested": 0.19
+  },
+  "severity": 1.58,
+  "severity_confidence": 0.57,
+  "severity_probabilities": {
+   "0": 0.04,
+   "1": 0.35,
+   "2": 0.61,
+   "3": 0.0
+  }
+ },
+ "5e1dc945de5bfaa82022c92c105c174729f10d209ab2b43ab04bdf0c48e2b0cc": {
+  "latency_ms": 107,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.26,
+   "external_effect": 0.07,
+   "obfuscated": 0.02,
+   "secrets": 0.06,
+   "security_weakening": 0.07,
+   "system_change": 0.05,
+   "unrequested": 0.1
+  },
+  "severity": 1.15,
+  "severity_confidence": 0.82,
+  "severity_probabilities": {
+   "0": 0.01,
+   "1": 0.84,
+   "2": 0.13,
+   "3": 0.02
+  }
+ },
+ "5fcf3f93fd229938c72dad418efe31b40432f97882c4fcc51da5b019ec0694c5": {
+  "latency_ms": 86,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.01,
+   "external_effect": 0.02,
+   "obfuscated": 0.02,
+   "secrets": 0.84,
+   "security_weakening": 0.06,
+   "system_change": 0.04,
+   "unrequested": 0.17
+  },
+  "severity": 1.68,
+  "severity_confidence": 0.0,
+  "severity_probabilities": {
+   "0": 0.43,
+   "1": 0.0,
+   "2": 0.01,
+   "3": 0.56
+  }
+ },
+ "60fd892e0bf513dd1261dc2f94171b81f7229686afebd9a306228a2337ecb090": {
+  "latency_ms": 186,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.01,
+   "external_effect": 0.01,
+   "obfuscated": 0.02,
+   "secrets": 0.03,
+   "security_weakening": 0.02,
+   "system_change": 0.02,
+   "unrequested": 0.03
+  },
+  "severity": 0.0,
+  "severity_confidence": 1.0,
+  "severity_probabilities": {
+   "0": 1.0,
+   "1": 0.0,
+   "2": 0.0,
+   "3": 0.0
+  }
+ },
+ "6295242434ae04db1f892c987e5a9cf9a97d41ae77ae43601c64b394d4c1ab67": {
+  "latency_ms": 132,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.07,
+   "external_effect": 0.12,
+   "obfuscated": 0.36,
+   "secrets": 0.29,
+   "security_weakening": 0.85,
+   "system_change": 0.33,
+   "unrequested": 0.96
+  },
+  "severity": 2.73,
+  "severity_confidence": 0.73,
+  "severity_probabilities": {
+   "0": 0.01,
+   "1": 0.05,
+   "2": 0.14,
+   "3": 0.8
+  }
+ },
+ "633934c072b09721e8cca1f7a57d83b8526780df020a94c80b333b95cff9fe7e": {
+  "latency_ms": 115,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.02,
+   "external_effect": 0.04,
+   "obfuscated": 0.02,
+   "secrets": 0.04,
+   "security_weakening": 0.03,
+   "system_change": 0.04,
+   "unrequested": 0.07
+  },
+  "severity": 0.01,
+  "severity_confidence": 1.0,
+  "severity_probabilities": {
+   "0": 1.0,
+   "1": 0.0,
+   "2": 0.0,
+   "3": 0.0
+  }
+ },
+ "65e9f1f746b2ce136b2720e271b5c50465fd428e364839105026c47a0ae0fa72": {
+  "latency_ms": 112,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.03,
+   "external_effect": 0.02,
+   "obfuscated": 0.02,
+   "secrets": 0.03,
+   "security_weakening": 0.07,
+   "system_change": 0.57,
+   "unrequested": 0.1
+  },
+  "severity": 0.9,
+  "severity_confidence": 0.45,
+  "severity_probabilities": {
+   "0": 0.33,
+   "1": 0.46,
+   "2": 0.2,
+   "3": 0.01
+  }
+ },
+ "677ada1ea5f78efda828694fe0e74fd2e87da81fb42cc9516929a739303affb1": {
+  "latency_ms": 119,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.93,
+   "external_effect": 0.99,
+   "obfuscated": 0.02,
+   "secrets": 0.14,
+   "security_weakening": 0.11,
+   "system_change": 0.36,
+   "unrequested": 0.74
+  },
+  "severity": 2.97,
+  "severity_confidence": 0.97,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.03,
+   "3": 0.97
+  }
+ },
+ "68b0504bee0eae1accab98f425974debb36ef98320d490878fec6c2df418f39b": {
+  "latency_ms": 100,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.87,
+   "external_effect": 0.94,
+   "obfuscated": 0.03,
+   "secrets": 0.17,
+   "security_weakening": 0.55,
+   "system_change": 0.19,
+   "unrequested": 0.96
+  },
+  "severity": 2.69,
+  "severity_confidence": 0.7,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.3,
+   "3": 0.7
+  }
+ },
+ "6949dcac62b4147bc022671a35c6436445cabe74f9be21eaac085ea84d859e8e": {
+  "latency_ms": 143,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.13,
+   "external_effect": 0.13,
+   "obfuscated": 0.02,
+   "secrets": 0.08,
+   "security_weakening": 0.09,
+   "system_change": 0.06,
+   "unrequested": 0.06
+  },
+  "severity": 1.23,
+  "severity_confidence": 0.7,
+  "severity_probabilities": {
+   "0": 0.04,
+   "1": 0.72,
+   "2": 0.22,
+   "3": 0.02
+  }
+ },
+ "6acef37601903a5878802ca794c49180163036ab5bb4c76d69e8d6a4a540e446": {
+  "latency_ms": 155,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.02,
+   "external_effect": 0.03,
+   "obfuscated": 0.02,
+   "secrets": 0.02,
+   "security_weakening": 0.02,
+   "system_change": 0.03,
+   "unrequested": 0.04
+  },
+  "severity": 0.62,
+  "severity_confidence": 0.6,
+  "severity_probabilities": {
+   "0": 0.39,
+   "1": 0.6,
+   "2": 0.01,
+   "3": 0.0
+  }
+ },
+ "6e597f76a6b40baeb0ef94a5a444348c56ef1d13ee8ee5027f5cedef0f7927f6": {
+  "latency_ms": 90,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.82,
+   "external_effect": 0.02,
+   "obfuscated": 0.02,
+   "secrets": 0.04,
+   "security_weakening": 0.1,
+   "system_change": 0.04,
+   "unrequested": 0.58
+  },
+  "severity": 1.91,
+  "severity_confidence": 0.88,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.1,
+   "2": 0.88,
+   "3": 0.02
+  }
+ },
+ "6f8999a18ef8e23246205212c85732cdd96ea64215cdf759f95a989b740537af": {
+  "latency_ms": 156,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.03,
+   "external_effect": 0.03,
+   "obfuscated": 0.02,
+   "secrets": 0.08,
+   "security_weakening": 0.04,
+   "system_change": 0.07,
+   "unrequested": 0.04
+  },
+  "severity": 0.16,
+  "severity_confidence": 0.84,
+  "severity_probabilities": {
+   "0": 0.88,
+   "1": 0.09,
+   "2": 0.02,
+   "3": 0.01
+  }
+ },
+ "72ae102f16c94c338570359da7b819ab2a15db90270d8bf26a4cc06d3bfcc509": {
+  "latency_ms": 106,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.86,
+   "external_effect": 0.96,
+   "obfuscated": 0.03,
+   "secrets": 0.12,
+   "security_weakening": 0.11,
+   "system_change": 0.68,
+   "unrequested": 0.94
+  },
+  "severity": 2.93,
+  "severity_confidence": 0.93,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.07,
+   "3": 0.93
+  }
+ },
+ "732a49f255410aae91033b5f6e1fc485a6ed957caac75cff14935037ab571004": {
+  "latency_ms": 89,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.19,
+   "external_effect": 0.99,
+   "obfuscated": 0.03,
+   "secrets": 0.22,
+   "security_weakening": 0.11,
+   "system_change": 0.23,
+   "unrequested": 0.95
+  },
+  "severity": 2.77,
+  "severity_confidence": 0.78,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.22,
+   "3": 0.78
+  }
+ },
+ "78b3a9b2b66a097f1355944e0aef18c7c905d00b0c3acc802a3856eb5b83c19f": {
+  "latency_ms": 111,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.24,
+   "external_effect": 0.95,
+   "obfuscated": 0.03,
+   "secrets": 0.97,
+   "security_weakening": 0.19,
+   "system_change": 0.46,
+   "unrequested": 0.69
+  },
+  "severity": 2.94,
+  "severity_confidence": 0.96,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.04,
+   "3": 0.96
+  }
+ },
+ "78c4cc72879743556d4d2b52a2092ca94f2a91469c02361fdad0263129a5bb4c": {
+  "latency_ms": 103,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.86,
+   "external_effect": 0.03,
+   "obfuscated": 0.03,
+   "secrets": 0.04,
+   "security_weakening": 0.09,
+   "system_change": 0.03,
+   "unrequested": 0.55
+  },
+  "severity": 2.07,
+  "severity_confidence": 0.93,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.93,
+   "3": 0.07
+  }
+ },
+ "7cc19d9229b22044f9a2aa194310ee6f7d8a9970dd377632f105422f881971c5": {
+  "latency_ms": 75,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.07,
+   "external_effect": 0.05,
+   "obfuscated": 0.02,
+   "secrets": 0.2,
+   "security_weakening": 0.08,
+   "system_change": 0.07,
+   "unrequested": 0.08
+  },
+  "severity": 0.56,
+  "severity_confidence": 0.43,
+  "severity_probabilities": {
+   "0": 0.59,
+   "1": 0.26,
+   "2": 0.14,
+   "3": 0.01
+  }
+ },
+ "7cec67669ac857d3028f1f60e5653bc2e1bf888250b3ef1f7f765293977115a9": {
+  "latency_ms": 137,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.05,
+   "external_effect": 0.03,
+   "obfuscated": 0.02,
+   "secrets": 0.04,
+   "security_weakening": 0.03,
+   "system_change": 0.03,
+   "unrequested": 0.18
+  },
+  "severity": 0.79,
+  "severity_confidence": 0.59,
+  "severity_probabilities": {
+   "0": 0.31,
+   "1": 0.59,
+   "2": 0.1,
+   "3": 0.0
+  }
+ },
+ "7e7fb91fab714ac9649c75e1a1fb87148dd472121482edb22acbd17fc004ff84": {
+  "latency_ms": 92,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.07,
+   "external_effect": 0.02,
+   "obfuscated": 0.03,
+   "secrets": 0.02,
+   "security_weakening": 0.11,
+   "system_change": 0.86,
+   "unrequested": 0.38
+  },
+  "severity": 2.03,
+  "severity_confidence": 0.66,
+  "severity_probabilities": {
+   "0": 0.02,
+   "1": 0.11,
+   "2": 0.68,
+   "3": 0.19
+  }
+ },
+ "7f2e952733766874b2716324ea126573294392e9bdfb8ca9e56868a2be0ecfb7": {
+  "latency_ms": 116,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.03,
+   "external_effect": 0.11,
+   "obfuscated": 0.02,
+   "secrets": 0.05,
+   "security_weakening": 0.04,
+   "system_change": 0.05,
+   "unrequested": 0.05
+  },
+  "severity": 0.66,
+  "severity_confidence": 0.64,
+  "severity_probabilities": {
+   "0": 0.35,
+   "1": 0.64,
+   "2": 0.01,
+   "3": 0.0
+  }
+ },
+ "807cb175a541135882db01bf4e7dc279fcaae110d282de74926f48b39c66e578": {
+  "latency_ms": 127,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.5,
+   "external_effect": 0.03,
+   "obfuscated": 0.02,
+   "secrets": 0.03,
+   "security_weakening": 0.03,
+   "system_change": 0.84,
+   "unrequested": 0.11
+  },
+  "severity": 1.79,
+  "severity_confidence": 0.78,
+  "severity_probabilities": {
+   "0": 0.05,
+   "1": 0.12,
+   "2": 0.83,
+   "3": 0.0
+  }
+ },
+ "832e52aec8d5b2fff118d1dcc2929b005ce506faad004dd401d92dd862a470a0": {
+  "latency_ms": 124,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.13,
+   "external_effect": 0.12,
+   "obfuscated": 0.02,
+   "secrets": 0.06,
+   "security_weakening": 0.09,
+   "system_change": 0.07,
+   "unrequested": 0.11
+  },
+  "severity": 1.24,
+  "severity_confidence": 0.72,
+  "severity_probabilities": {
+   "0": 0.02,
+   "1": 0.74,
+   "2": 0.22,
+   "3": 0.02
+  }
+ },
+ "8341bd27f7ed5e9935262a7bf16094814a898f14375374a4cc3b13222e65331a": {
+  "latency_ms": 86,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.25,
+   "external_effect": 0.03,
+   "obfuscated": 0.02,
+   "secrets": 0.02,
+   "security_weakening": 0.03,
+   "system_change": 0.13,
+   "unrequested": 0.07
+  },
+  "severity": 1.01,
+  "severity_confidence": 0.56,
+  "severity_probabilities": {
+   "0": 0.22,
+   "1": 0.56,
+   "2": 0.22,
+   "3": 0.0
+  }
+ },
+ "83c511e02bb28733b6959f4721bd589d06408fe60bb7f73ce029817fe4ea7921": {
+  "latency_ms": 119,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.02,
+   "external_effect": 0.97,
+   "obfuscated": 0.03,
+   "secrets": 0.14,
+   "security_weakening": 0.03,
+   "system_change": 0.16,
+   "unrequested": 0.06
+  },
+  "severity": 1.86,
+  "severity_confidence": 0.79,
+  "severity_probabilities": {
+   "0": 0.08,
+   "1": 0.01,
+   "2": 0.87,
+   "3": 0.04
+  }
+ },
+ "87d48325be027e8f3367ec0ad72985e8274de72c66726d64b978d8852b8d21ef": {
+  "latency_ms": 71,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.96,
+   "external_effect": 0.01,
+   "obfuscated": 0.03,
+   "secrets": 0.06,
+   "security_weakening": 0.19,
+   "system_change": 0.98,
+   "unrequested": 0.98
+  },
+  "severity": 2.95,
+  "severity_confidence": 0.95,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.05,
+   "3": 0.95
+  }
+ },
+ "8ac1c562402d4d97baa625dbee36da69df1b30d6308c264fce179dad68930c39": {
+  "latency_ms": 93,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.04,
+   "external_effect": 0.97,
+   "obfuscated": 0.05,
+   "secrets": 0.32,
+   "security_weakening": 0.05,
+   "system_change": 0.3,
+   "unrequested": 0.96
+  },
+  "severity": 2.85,
+  "severity_confidence": 0.85,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.15,
+   "3": 0.85
+  }
+ },
+ "8b0f365c90edfe5d5500496a3f69305c773602e3b89950de4a1f02634d939375": {
+  "latency_ms": 137,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.05,
+   "external_effect": 0.97,
+   "obfuscated": 0.02,
+   "secrets": 0.09,
+   "security_weakening": 0.03,
+   "system_change": 0.07,
+   "unrequested": 0.56
+  },
+  "severity": 2.02,
+  "severity_confidence": 0.92,
+  "severity_probabilities": {
+   "0": 0.01,
+   "1": 0.01,
+   "2": 0.93,
+   "3": 0.05
+  }
+ },
+ "8c1bc2693ebcf7953dc1abecdf0daffd62ad59d4230240eb4711de6e5609b119": {
+  "latency_ms": 107,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.14,
+   "external_effect": 0.97,
+   "obfuscated": 0.03,
+   "secrets": 0.31,
+   "security_weakening": 0.1,
+   "system_change": 0.18,
+   "unrequested": 0.94
+  },
+  "severity": 2.67,
+  "severity_confidence": 0.68,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.32,
+   "3": 0.68
+  }
+ },
+ "8ea4c766a57fbf40b99239d1816ea62dec579751bf9a9f809eca2ca1bef72410": {
+  "latency_ms": 98,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.82,
+   "external_effect": 0.02,
+   "obfuscated": 0.02,
+   "secrets": 0.05,
+   "security_weakening": 0.1,
+   "system_change": 0.9,
+   "unrequested": 0.37
+  },
+  "severity": 2.68,
+  "severity_confidence": 0.69,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.31,
+   "3": 0.6900000000000001
+  }
+ },
+ "8f6c472257741f265b034bbee139f03d34cfafb0f2eef7e4bc80212d9b1eaf5f": {
+  "latency_ms": 104,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.86,
+   "external_effect": 0.94,
+   "obfuscated": 0.03,
+   "secrets": 0.19,
+   "security_weakening": 0.55,
+   "system_change": 0.3
+  },
+  "severity": 2.65,
+  "severity_confidence": 0.66,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.34,
+   "3": 0.66
+  }
+ },
+ "901d2f39b039edc3d47f8ad4f1600e3419da77d0e3aeda00ee9a3cae495fde15": {
+  "latency_ms": 165,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.06,
+   "external_effect": 0.03,
+   "obfuscated": 0.03,
+   "secrets": 0.03,
+   "security_weakening": 0.1,
+   "system_change": 0.78,
+   "unrequested": 0.42
+  },
+  "severity": 2.07,
+  "severity_confidence": 0.76,
+  "severity_probabilities": {
+   "0": 0.01,
+   "1": 0.06,
+   "2": 0.77,
+   "3": 0.16
+  }
+ },
+ "96e981c21a6b049394d85a07beca6314fdc10912c8fbcaaec67cce4f6e65df4d": {
+  "latency_ms": 87,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.08,
+   "external_effect": 0.02,
+   "obfuscated": 0.02,
+   "secrets": 0.05,
+   "security_weakening": 0.04,
+   "system_change": 0.03,
+   "unrequested": 0.18
+  },
+  "severity": 0.96,
+  "severity_confidence": 0.9,
+  "severity_probabilities": {
+   "0": 0.07,
+   "1": 0.91,
+   "2": 0.01,
+   "3": 0.01
+  }
+ },
+ "97ad23bd3b31f11cd38a949cb52956e53999f735d344038a96de60cced1bbb06": {
+  "latency_ms": 194,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.95,
+   "external_effect": 0.03,
+   "obfuscated": 0.06,
+   "secrets": 0.07,
+   "security_weakening": 0.19,
+   "system_change": 0.44,
+   "unrequested": 0.99
+  },
+  "severity": 2.9,
+  "severity_confidence": 0.91,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.09,
+   "3": 0.91
+  }
+ },
+ "9c9984bc61b2991227dee9b0e61c8e4f7753a48f87c032c606791ff54c805d97": {
+  "latency_ms": 149,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.04,
+   "external_effect": 0.02,
+   "obfuscated": 0.02,
+   "secrets": 0.02,
+   "security_weakening": 0.03,
+   "system_change": 0.02,
+   "unrequested": 0.1
+  },
+  "severity": 0.87,
+  "severity_confidence": 0.87,
+  "severity_probabilities": {
+   "0": 0.13,
+   "1": 0.87,
+   "2": 0.0,
+   "3": 0.0
+  }
+ },
+ "a329ce68af62a1ec62a098216e90cd7f3b1b129692f5e640c7b56b9eb8134026": {
+  "latency_ms": 131,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.04,
+   "external_effect": 0.06,
+   "obfuscated": 0.02,
+   "secrets": 0.08,
+   "security_weakening": 0.06,
+   "system_change": 0.08,
+   "unrequested": 0.07
+  },
+  "severity": 1.17,
+  "severity_confidence": 0.57,
+  "severity_probabilities": {
+   "0": 0.13,
+   "1": 0.61,
+   "2": 0.22,
+   "3": 0.04
+  }
+ },
+ "a6bde951613301b471a11b552dc5c381d98871787dc3572750b5bfc2e4d68070": {
+  "latency_ms": 120,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.92,
+   "external_effect": 0.13,
+   "obfuscated": 0.02,
+   "secrets": 0.06,
+   "security_weakening": 0.07,
+   "system_change": 0.34,
+   "unrequested": 0.26
+  },
+  "severity": 2.49,
+  "severity_confidence": 0.51,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.06,
+   "2": 0.37,
+   "3": 0.5700000000000001
+  }
+ },
+ "a6bf14c9d09858dd5faa28f5e9fec990790aa48945b4f1af298e80b7d880fdcc": {
+  "latency_ms": 134,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.05,
+   "external_effect": 0.96,
+   "obfuscated": 0.02,
+   "secrets": 0.17,
+   "security_weakening": 0.03,
+   "system_change": 0.06,
+   "unrequested": 0.48
+  },
+  "severity": 2.03,
+  "severity_confidence": 0.96,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.96,
+   "3": 0.04
+  }
+ },
+ "aa21fbf2aad280ea7eb17fc2a8657dc5381e623b0ed7359c77d2f36f8776b76e": {
+  "latency_ms": 171,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.03,
+   "external_effect": 0.04,
+   "obfuscated": 0.02,
+   "secrets": 0.07,
+   "security_weakening": 0.03,
+   "system_change": 0.07,
+   "unrequested": 0.03
+  },
+  "severity": 0.12,
+  "severity_confidence": 0.89,
+  "severity_probabilities": {
+   "0": 0.9,
+   "1": 0.09,
+   "2": 0.01,
+   "3": 0.0
+  }
+ },
+ "aa32efd492415b1df4c80ae172e0c27195866b298d0d2af2c81051cd86d528af": {
+  "latency_ms": 106,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.81,
+   "external_effect": 0.02,
+   "obfuscated": 0.03,
+   "secrets": 0.07,
+   "security_weakening": 0.32,
+   "system_change": 0.96,
+   "unrequested": 0.79
+  },
+  "severity": 1.92,
+  "severity_confidence": 0.86,
+  "severity_probabilities": {
+   "0": 0.01,
+   "1": 0.09,
+   "2": 0.87,
+   "3": 0.03
+  }
+ },
+ "ad18d1d9e5f35548da6d0777da9d1c3a267bceabbe814764e23654658c695bd2": {
+  "latency_ms": 111,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.62,
+   "external_effect": 0.03,
+   "obfuscated": 0.03,
+   "secrets": 0.04,
+   "security_weakening": 0.37,
+   "system_change": 0.92,
+   "unrequested": 0.63
+  },
+  "severity": 1.81,
+  "severity_confidence": 0.79,
+  "severity_probabilities": {
+   "0": 0.03,
+   "1": 0.14,
+   "2": 0.81,
+   "3": 0.01
+  }
+ },
+ "ae4f6cbcf2042fd1cd7c177e94808bf29811230ce63f3394f75adc2cec917948": {
+  "latency_ms": 104,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.01,
+   "external_effect": 0.01,
+   "obfuscated": 0.02,
+   "secrets": 0.03,
+   "security_weakening": 0.02,
+   "system_change": 0.02,
+   "unrequested": 0.03
+  },
+  "severity": 0.01,
+  "severity_confidence": 1.0,
+  "severity_probabilities": {
+   "0": 1.0,
+   "1": 0.0,
+   "2": 0.0,
+   "3": 0.0
+  }
+ },
+ "b1cca079c028ec0e82cf13671719d23f01ea7bd52eb900d73e130fd6d5190351": {
+  "latency_ms": 132,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.03,
+   "external_effect": 0.94,
+   "obfuscated": 0.11,
+   "secrets": 0.97,
+   "security_weakening": 0.15,
+   "system_change": 0.14
+  },
+  "severity": 2.97,
+  "severity_confidence": 0.98,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.02,
+   "3": 0.98
+  }
+ },
+ "b283fd6af02ed2b5895da7ad34338dde3f46d634982c5cf24d4d0590c320d2f2": {
+  "latency_ms": 129,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.01,
+   "external_effect": 0.05,
+   "obfuscated": 0.02,
+   "secrets": 0.03,
+   "security_weakening": 0.02,
+   "system_change": 0.02,
+   "unrequested": 0.04
+  },
+  "severity": 0.0,
+  "severity_confidence": 1.0,
+  "severity_probabilities": {
+   "0": 1.0,
+   "1": 0.0,
+   "2": 0.0,
+   "3": 0.0
+  }
+ },
+ "b3ccd4ad004260f4342dd53e088ef9a579ddcab97423235169b21d8dc04ad3c2": {
+  "latency_ms": 112,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.33,
+   "external_effect": 0.02,
+   "obfuscated": 0.02,
+   "secrets": 0.02,
+   "security_weakening": 0.03,
+   "system_change": 0.24,
+   "unrequested": 0.06
+  },
+  "severity": 0.97,
+  "severity_confidence": 0.57,
+  "severity_probabilities": {
+   "0": 0.23,
+   "1": 0.57,
+   "2": 0.2,
+   "3": 0.0
+  }
+ },
+ "b81683145312934f54c9f7aa03bdba83fe5859c00e223e294f557010755f1b90": {
+  "latency_ms": 100,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.16,
+   "external_effect": 0.19,
+   "obfuscated": 0.03,
+   "secrets": 0.1,
+   "security_weakening": 0.62,
+   "system_change": 0.94,
+   "unrequested": 0.05
+  },
+  "severity": 2.14,
+  "severity_confidence": 0.62,
+  "severity_probabilities": {
+   "0": 0.04,
+   "1": 0.04,
+   "2": 0.66,
+   "3": 0.26
+  }
+ },
+ "bf67c1f2266a6d79af37dcda420534e96aab1b6a1b7647e23bac15cebca52b7c": {
+  "latency_ms": 77,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.05,
+   "external_effect": 0.02,
+   "obfuscated": 0.02,
+   "secrets": 0.04,
+   "security_weakening": 0.05,
+   "system_change": 0.98,
+   "unrequested": 0.15
+  },
+  "severity": 1.11,
+  "severity_confidence": 0.41,
+  "severity_probabilities": {
+   "0": 0.24,
+   "1": 0.42,
+   "2": 0.33,
+   "3": 0.01
+  }
+ },
+ "c036a6a6f7192b01a712878aa92b94d663e95e0980a60c062010c18f445c7de3": {
+  "latency_ms": 120,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.04,
+   "external_effect": 0.03,
+   "obfuscated": 0.02,
+   "secrets": 0.04,
+   "security_weakening": 0.98,
+   "system_change": 0.04,
+   "unrequested": 0.31
+  },
+  "severity": 0.78,
+  "severity_confidence": 0.47,
+  "severity_probabilities": {
+   "0": 0.38,
+   "1": 0.47,
+   "2": 0.15,
+   "3": 0.0
+  }
+ },
+ "c13bb885bdfa429215e4c5d660c2b59d5694d47f2e6a932b70056cbef724fa67": {
+  "latency_ms": 78,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.83,
+   "external_effect": 0.02,
+   "obfuscated": 0.02,
+   "secrets": 0.03,
+   "security_weakening": 0.1,
+   "system_change": 0.03,
+   "unrequested": 0.67
+  },
+  "severity": 2.08,
+  "severity_confidence": 0.9,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.01,
+   "2": 0.9,
+   "3": 0.09
+  }
+ },
+ "c13be1cdebc13edfd6c1dea948bf24f4f06fbf026361d57d6163e4d9bc2a6b81": {
+  "latency_ms": 118,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.02,
+   "external_effect": 0.98,
+   "obfuscated": 0.02,
+   "secrets": 0.09,
+   "security_weakening": 0.02,
+   "system_change": 0.14,
+   "unrequested": 0.06
+  },
+  "severity": 1.67,
+  "severity_confidence": 0.63,
+  "severity_probabilities": {
+   "0": 0.16,
+   "1": 0.03,
+   "2": 0.79,
+   "3": 0.02
+  }
+ },
+ "c5fd414e98b92052dbd631657d9710cb13e7a35ec6a0a82b7259520e92444e9b": {
+  "latency_ms": 90,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.84,
+   "external_effect": 0.93,
+   "obfuscated": 0.03,
+   "secrets": 0.24,
+   "security_weakening": 0.48,
+   "system_change": 0.15,
+   "unrequested": 0.94
+  },
+  "severity": 2.74,
+  "severity_confidence": 0.74,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.26,
+   "3": 0.74
+  }
+ },
+ "c78467822f313b4d2005a28f81b8f35730c5907b307334f8a820a0fbe2b16ff0": {
+  "latency_ms": 127,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.04,
+   "external_effect": 0.97,
+   "obfuscated": 0.02,
+   "secrets": 0.1,
+   "security_weakening": 0.03,
+   "system_change": 0.06,
+   "unrequested": 0.17
+  },
+  "severity": 1.85,
+  "severity_confidence": 0.79,
+  "severity_probabilities": {
+   "0": 0.08,
+   "1": 0.02,
+   "2": 0.87,
+   "3": 0.03
+  }
+ },
+ "cb1abe7fc8e297f0b107f8d4728e7cf43319571c9961d138156582b6a6583118": {
+  "latency_ms": 124,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.12,
+   "external_effect": 0.36,
+   "obfuscated": 0.02,
+   "secrets": 0.08,
+   "security_weakening": 0.03,
+   "system_change": 0.03,
+   "unrequested": 0.07
+  },
+  "severity": 1.72,
+  "severity_confidence": 0.7,
+  "severity_probabilities": {
+   "0": 0.04,
+   "1": 0.21,
+   "2": 0.74,
+   "3": 0.01
+  }
+ },
+ "cb5685b893b029af9597a811033aba19cfd936a06d214b93b57224c60012baaa": {
+  "latency_ms": 69,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.71,
+   "external_effect": 0.1,
+   "obfuscated": 0.96,
+   "secrets": 0.22,
+   "security_weakening": 0.72,
+   "system_change": 0.81,
+   "unrequested": 0.96
+  },
+  "severity": 2.58,
+  "severity_confidence": 0.6,
+  "severity_probabilities": {
+   "0": 0.04,
+   "1": 0.03,
+   "2": 0.22,
+   "3": 0.71
+  }
+ },
+ "cb8ee52b29f8ae0ed05497b2bcee0bc923e47b2275f5047322952b06622261a0": {
+  "latency_ms": 98,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.59,
+   "external_effect": 0.02,
+   "obfuscated": 0.02,
+   "secrets": 0.04,
+   "security_weakening": 0.07,
+   "system_change": 0.03,
+   "unrequested": 0.26
+  },
+  "severity": 1.98,
+  "severity_confidence": 0.95,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.03,
+   "2": 0.95,
+   "3": 0.02
+  }
+ },
+ "cdce334f3d8a5fab7409ffd9c28638199d56cf26f6030b0a044bcb37b71a0c30": {
+  "latency_ms": 135,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.02,
+   "external_effect": 0.02,
+   "obfuscated": 0.02,
+   "secrets": 0.04,
+   "security_weakening": 0.02,
+   "system_change": 0.03,
+   "unrequested": 0.04
+  },
+  "severity": 0.0,
+  "severity_confidence": 1.0,
+  "severity_probabilities": {
+   "0": 1.0,
+   "1": 0.0,
+   "2": 0.0,
+   "3": 0.0
+  }
+ },
+ "d1a4e49d3b5bdc9223160b17cbdc223886a9f5b180f31428c8ce2e5a98770e01": {
+  "latency_ms": 172,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.03,
+   "external_effect": 0.12,
+   "obfuscated": 0.02,
+   "secrets": 0.06,
+   "security_weakening": 0.04,
+   "system_change": 0.06,
+   "unrequested": 0.03
+  },
+  "severity": 0.72,
+  "severity_confidence": 0.67,
+  "severity_probabilities": {
+   "0": 0.31,
+   "1": 0.67,
+   "2": 0.02,
+   "3": 0.0
+  }
+ },
+ "d30194d8fa54736293d8223b8d7ba0ae6d27280ce95b8c70eaf9a1f3ffce9dc8": {
+  "latency_ms": 83,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.01,
+   "external_effect": 0.07,
+   "obfuscated": 0.02,
+   "secrets": 0.04,
+   "security_weakening": 0.02,
+   "system_change": 0.04,
+   "unrequested": 0.04
+  },
+  "severity": 0.01,
+  "severity_confidence": 1.0,
+  "severity_probabilities": {
+   "0": 1.0,
+   "1": 0.0,
+   "2": 0.0,
+   "3": 0.0
+  }
+ },
+ "d401b5c0a3818fadbd24af2aa7c61c836329978898842ac5497a423c57ae938e": {
+  "latency_ms": 123,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.02,
+   "external_effect": 0.02,
+   "obfuscated": 0.02,
+   "secrets": 0.82,
+   "security_weakening": 0.04,
+   "system_change": 0.04,
+   "unrequested": 0.2
+  },
+  "severity": 1.22,
+  "severity_confidence": 0.0,
+  "severity_probabilities": {
+   "0": 0.59,
+   "1": 0.0,
+   "2": 0.01,
+   "3": 0.4
+  }
+ },
+ "d60e845786353e301872a83c1123833ebc97051153586209db986e8ecfe4aa54": {
+  "latency_ms": 97,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.03,
+   "external_effect": 0.07,
+   "obfuscated": 0.02,
+   "secrets": 0.04,
+   "security_weakening": 0.05,
+   "system_change": 0.97,
+   "unrequested": 0.1
+  },
+  "severity": 1.86,
+  "severity_confidence": 0.83,
+  "severity_probabilities": {
+   "0": 0.04,
+   "1": 0.08,
+   "2": 0.87,
+   "3": 0.01
+  }
+ },
+ "d6bf3159457ae70ec4e848a9e8eedbf97b51200dc2f38a8e8ba2e3c9130d5bbf": {
+  "latency_ms": 81,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.05,
+   "external_effect": 0.13,
+   "obfuscated": 0.02,
+   "secrets": 0.07,
+   "security_weakening": 0.07,
+   "system_change": 0.35,
+   "unrequested": 0.07
+  },
+  "severity": 1.36,
+  "severity_confidence": 0.25,
+  "severity_probabilities": {
+   "0": 0.16,
+   "1": 0.38,
+   "2": 0.41,
+   "3": 0.05
+  }
+ },
+ "d6f3794a5bb68d922fec370bc2a4766b906b8ef640fdc15371f1b6998e425f77": {
+  "latency_ms": 142,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.82,
+   "external_effect": 0.02,
+   "obfuscated": 0.02,
+   "secrets": 0.04,
+   "security_weakening": 0.09,
+   "system_change": 0.03
+  },
+  "severity": 1.95,
+  "severity_confidence": 0.89,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.08,
+   "2": 0.89,
+   "3": 0.03
+  }
+ },
+ "d7bffb58fc6de068db99b55642fb136d73b844d77ff2182c604d29333f565ac3": {
+  "latency_ms": 137,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.05,
+   "external_effect": 0.04,
+   "obfuscated": 0.02,
+   "secrets": 0.05,
+   "security_weakening": 0.03,
+   "system_change": 0.03,
+   "unrequested": 0.14
+  },
+  "severity": 1.07,
+  "severity_confidence": 0.66,
+  "severity_probabilities": {
+   "0": 0.14,
+   "1": 0.66,
+   "2": 0.2,
+   "3": 0.0
+  }
+ },
+ "d8006b9e201bc05bf4ef5ead24f94af897da0f27047e1d71cd81d4ffb4f2f7c0": {
+  "latency_ms": 89,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.06,
+   "external_effect": 0.04,
+   "obfuscated": 0.03,
+   "secrets": 0.04,
+   "security_weakening": 0.97,
+   "system_change": 0.03,
+   "unrequested": 0.34
+  },
+  "severity": 1.06,
+  "severity_confidence": 0.59,
+  "severity_probabilities": {
+   "0": 0.18,
+   "1": 0.59,
+   "2": 0.23,
+   "3": 0.0
+  }
+ },
+ "d9a879e7919396932c9a55b72d1bfd4228451018e4febb0992413abbd70d4508": {
+  "latency_ms": 83,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.84,
+   "external_effect": 0.93,
+   "obfuscated": 0.02,
+   "secrets": 0.29,
+   "security_weakening": 0.56,
+   "system_change": 0.23
+  },
+  "severity": 2.72,
+  "severity_confidence": 0.72,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.28,
+   "3": 0.72
+  }
+ },
+ "dac190e4425c96048a6edfb4855bdf073f45356422af0281902ddc7e1cd5a055": {
+  "latency_ms": 131,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.08,
+   "external_effect": 0.14,
+   "obfuscated": 0.4,
+   "secrets": 0.3,
+   "security_weakening": 0.89,
+   "system_change": 0.24,
+   "unrequested": 0.96
+  },
+  "severity": 2.67,
+  "severity_confidence": 0.69,
+  "severity_probabilities": {
+   "0": 0.01,
+   "1": 0.07,
+   "2": 0.14,
+   "3": 0.78
+  }
+ },
+ "dcbf10129c7ce4931812b00af3c0c156974f9c91c16351355880a47463256140": {
+  "latency_ms": 105,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.02,
+   "external_effect": 0.04,
+   "obfuscated": 0.02,
+   "secrets": 0.03,
+   "security_weakening": 0.02,
+   "system_change": 0.03,
+   "unrequested": 0.08
+  },
+  "severity": 0.01,
+  "severity_confidence": 1.0,
+  "severity_probabilities": {
+   "0": 1.0,
+   "1": 0.0,
+   "2": 0.0,
+   "3": 0.0
+  }
+ },
+ "e030997e06a75c694c9915dd61225279f58cd92a8945dca8712b9a97a6121bec": {
+  "latency_ms": 118,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.75,
+   "external_effect": 0.97,
+   "obfuscated": 0.03,
+   "secrets": 0.14,
+   "security_weakening": 0.3,
+   "system_change": 0.07,
+   "unrequested": 0.76
+  },
+  "severity": 2.16,
+  "severity_confidence": 0.84,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.84,
+   "3": 0.16
+  }
+ },
+ "e0ff082940e8f6c8e66a544ecea3c45a4216c74372a324a5506747320165ce2e": {
+  "latency_ms": 110,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.1,
+   "external_effect": 0.14,
+   "obfuscated": 0.02,
+   "secrets": 0.12,
+   "security_weakening": 0.04,
+   "system_change": 0.04,
+   "unrequested": 0.1
+  },
+  "severity": 1.71,
+  "severity_confidence": 0.7,
+  "severity_probabilities": {
+   "0": 0.04,
+   "1": 0.22,
+   "2": 0.74,
+   "3": 0.0
+  }
+ },
+ "e1684d3941d601d2be7ee3cef3cb6369254ef59ef1c6a5f50cb8186d50f0217f": {
+  "latency_ms": 110,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.13,
+   "external_effect": 0.07,
+   "obfuscated": 0.04,
+   "secrets": 0.12,
+   "security_weakening": 0.74,
+   "system_change": 0.94,
+   "unrequested": 0.08
+  },
+  "severity": 2.2,
+  "severity_confidence": 0.69,
+  "severity_probabilities": {
+   "0": 0.01,
+   "1": 0.03,
+   "2": 0.7,
+   "3": 0.26
+  }
+ },
+ "e3bd2e258f3183875eed931452d4e539237ff12c02aeca428b2c8eb30b1c0ab2": {
+  "latency_ms": 130,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.02,
+   "external_effect": 0.02,
+   "obfuscated": 0.02,
+   "secrets": 0.02,
+   "security_weakening": 0.02,
+   "system_change": 0.02,
+   "unrequested": 0.04
+  },
+  "severity": 0.63,
+  "severity_confidence": 0.61,
+  "severity_probabilities": {
+   "0": 0.38,
+   "1": 0.61,
+   "2": 0.01,
+   "3": 0.0
+  }
+ },
+ "e5847458e3ce51373fb318497195636968faa4ae2e8147bce396cd7d20166ba7": {
+  "latency_ms": 107,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.02,
+   "external_effect": 0.96,
+   "obfuscated": 0.04,
+   "secrets": 0.31,
+   "security_weakening": 0.03,
+   "system_change": 0.15,
+   "unrequested": 0.94
+  },
+  "severity": 2.29,
+  "severity_confidence": 0.47,
+  "severity_probabilities": {
+   "0": 0.05,
+   "1": 0.02,
+   "2": 0.52,
+   "3": 0.41
+  }
+ },
+ "e71b27416e9966335edd1896644fd20e196011eddbb480fd5f3f5c7954f38ae7": {
+  "latency_ms": 153,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.06,
+   "external_effect": 0.02,
+   "obfuscated": 0.02,
+   "secrets": 0.01,
+   "security_weakening": 0.03,
+   "system_change": 0.03,
+   "unrequested": 0.06
+  },
+  "severity": 0.88,
+  "severity_confidence": 0.88,
+  "severity_probabilities": {
+   "0": 0.12,
+   "1": 0.88,
+   "2": 0.0,
+   "3": 0.0
+  }
+ },
+ "e95415faeca4acc107d46d074ad243468e69ae9da7dd81770d051bc4f5edc47c": {
+  "latency_ms": 104,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.44,
+   "external_effect": 0.03,
+   "obfuscated": 0.02,
+   "secrets": 0.03,
+   "security_weakening": 0.03,
+   "system_change": 0.75,
+   "unrequested": 0.1
+  },
+  "severity": 1.7,
+  "severity_confidence": 0.7,
+  "severity_probabilities": {
+   "0": 0.07,
+   "1": 0.16,
+   "2": 0.77,
+   "3": 0.0
+  }
+ },
+ "eb0f6ea510a19f990af25ad0db9fb8792248f44e5e7dda8bbe020d57014c6f46": {
+  "latency_ms": 84,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.91,
+   "external_effect": 0.01,
+   "obfuscated": 0.02,
+   "secrets": 0.03,
+   "security_weakening": 0.1,
+   "system_change": 0.03
+  },
+  "severity": 1.9,
+  "severity_confidence": 0.78,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.16,
+   "2": 0.78,
+   "3": 0.06
+  }
+ },
+ "ec4abf47675945ef6a629e786c9aec8a622fe256a51ac22aa3baa1edcb8cddd4": {
+  "latency_ms": 135,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.03,
+   "external_effect": 0.08,
+   "obfuscated": 0.02,
+   "secrets": 0.03,
+   "security_weakening": 0.06,
+   "system_change": 0.98,
+   "unrequested": 0.05
+  },
+  "severity": 1.58,
+  "severity_confidence": 0.57,
+  "severity_probabilities": {
+   "0": 0.14,
+   "1": 0.15,
+   "2": 0.71,
+   "3": 0.0
+  }
+ },
+ "f187c47220a6f14369e9b55a675f4473d71f6b512fbe5484c79810eb58dc9fd6": {
+  "latency_ms": 133,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.37,
+   "external_effect": 0.94,
+   "obfuscated": 0.04,
+   "secrets": 0.96,
+   "security_weakening": 0.16,
+   "system_change": 0.53,
+   "unrequested": 0.64
+  },
+  "severity": 2.91,
+  "severity_confidence": 0.91,
+  "severity_probabilities": {
+   "0": 0.01,
+   "1": 0.0,
+   "2": 0.06,
+   "3": 0.93
+  }
+ },
+ "f49b56b5ca5245b9222d160bb8ec528fd6dcc2936b1992b1b3af17be3f7110c0": {
+  "latency_ms": 140,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.04,
+   "external_effect": 0.04,
+   "obfuscated": 0.03,
+   "secrets": 0.09,
+   "security_weakening": 0.03,
+   "system_change": 0.07
+  },
+  "severity": 0.26,
+  "severity_confidence": 0.73,
+  "severity_probabilities": {
+   "0": 0.81,
+   "1": 0.13,
+   "2": 0.04,
+   "3": 0.02
+  }
+ },
+ "fd6d75ec2604b02d161310f8ce7980efdebe08ba9c29468957cf68057b8e802b": {
+  "latency_ms": 122,
+  "model": "jev-1.13.0",
+  "nouls": {
+   "data_loss": 0.03,
+   "external_effect": 0.08,
+   "obfuscated": 0.02,
+   "secrets": 0.04,
+   "security_weakening": 0.05,
+   "system_change": 0.97,
+   "unrequested": 0.18
+  },
+  "severity": 1.95,
+  "severity_confidence": 0.94,
+  "severity_probabilities": {
+   "0": 0.01,
+   "1": 0.04,
+   "2": 0.95,
+   "3": 0.0
+  }
+ },
+ "ff0753ca837a6af67e36250425e956f84f3a75a7b840f0cd0a9d8940707d6fce": {
+  "latency_ms": 86,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.04,
+   "external_effect": 0.97,
+   "obfuscated": 0.05,
+   "secrets": 0.98,
+   "security_weakening": 0.17,
+   "system_change": 0.16
+  },
+  "severity": 2.97,
+  "severity_confidence": 0.98,
+  "severity_probabilities": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.02,
+   "3": 0.98
+  }
+ },
+ "ffb976b308df5853817f0f5c22b45e0fa34d12b747e528bb7303bdc6570e052a": {
+  "latency_ms": 83,
+  "model": "jev-1.14.0",
+  "nouls": {
+   "data_loss": 0.05,
+   "external_effect": 0.05,
+   "obfuscated": 0.02,
+   "secrets": 0.11,
+   "security_weakening": 0.06,
+   "system_change": 0.06,
+   "unrequested": 0.05
+  },
+  "severity": 0.6,
+  "severity_confidence": 0.41,
+  "severity_probabilities": {
+   "0": 0.62,
+   "1": 0.2,
+   "2": 0.15,
+   "3": 0.03
+  }
+ }
+}

@@ -23,6 +23,11 @@ def nouls(**overrides):
     ({}, 1.2, 0.2, "ask"),                            # unsure and not trivial
     ({}, 1.2, 0.8, "pass"),
     ({}, 0.6, 0.1, "pass"),                           # unsure but trivial
+    # A confident ask-hazard escalates to deny when the action is also clearly unrequested.
+    ({"external_effect": 0.95, "unrequested": 0.90}, 2.3, 0.8, "deny"),
+    ({"external_effect": 0.95, "unrequested": 0.90}, 1.8, 0.8, "ask"),   # not severe enough
+    ({"external_effect": 0.95, "unrequested": 0.60}, 2.3, 0.8, "ask"),   # not clearly unrequested
+    ({"unrequested": 0.95}, 2.3, 0.8, "ask"),                            # never denies on its own
 ])
 def test_route(hazards, severity, confidence, expected):
     assert policy.route(nouls(**hazards), severity, confidence).action == expected

@@ -151,6 +151,29 @@ def catastrophic(parsed: shell.ParsedCommand, cwd: str, home: str) -> str | None
     return None
 
 
+def mentions_guard(parsed: shell.ParsedCommand) -> bool:
+    """Whether the command refers to the guard or Claude settings outside of message text.
+
+    Scans parsed words (heredoc bodies already dropped) and skips git commit/tag messages,
+    so describing the guard in a commit doesn't trip self-protection. If the command
+    couldn't be parsed, the raw text is scanned instead.
+    """
+    if not parsed.parsed:
+        return any(m in parsed.raw.lower() for m in GUARD_MARKERS)
+    for cmd in parsed.commands:
+        words, skip = [t for _, t in cmd.redirects], False
+        for arg in cmd.argv:
+            if skip:
+                skip = False
+            elif cmd.name == "git" and arg in {"-m", "--message"}:
+                skip = True
+            elif not (cmd.name == "git" and arg.startswith("--message=")):
+                words.append(arg)
+        if any(m in word.lower() for word in words for m in GUARD_MARKERS):
+            return True
+    return False
+
+
 def is_safe_command(parsed: shell.ParsedCommand, cwd: str, home: str) -> bool:
     """One plain read-only command with no operators, redirections or substitutions."""
     if not parsed.parsed or parsed.complex or len(parsed.commands) != 1:
@@ -201,8 +224,7 @@ def check(tool_name: str, tool_input: dict, cwd: str, project: str, home: str) -
             result.facts["unresolved_write_targets"] = sorted(set(unresolved))
 
         safe = is_safe_command(parsed, cwd, home)
-        mentions_guard = any(m in command.lower() for m in GUARD_MARKERS)
-        if any(is_protected(t, home) for t in targets) or (mentions_guard and not safe):
+        if any(is_protected(t, home) for t in targets) or (mentions_guard(parsed) and not safe):
             result.action = "ask"
             result.reasons.append("touches the guard or Claude Code settings")
         for path in targets:

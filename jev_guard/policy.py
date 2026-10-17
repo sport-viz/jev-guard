@@ -25,6 +25,9 @@ POLICIES = {
         "ask_severity": 1.6,          # severity alone that earns a prompt
         "always_deny_severity": 2.7,  # severity alone that denies
         "uncertain_confidence": 0.35, # below this Score confidence, severity >= 1 asks
+        # Scope is fuzzy when requests are high level ("continue with the plan"), so
+        # `unrequested` only counts once the action itself is more than easily reversible.
+        "unrequested_min_severity": 1.5,
     },
 }
 DEFAULT_POLICY = "default"
@@ -47,6 +50,8 @@ def route(nouls: dict[str, float], severity: float, severity_confidence: float,
     unrequested = nouls.get("unrequested", 0.0) >= p["act_at"] and severity >= p["deny_severity"]
 
     for hazard, prob in nouls.items():
+        if hazard == "unrequested" and severity < p["unrequested_min_severity"]:
+            continue
         if prob >= p["act_at"]:
             wants_deny = HAZARD_ACTION.get(hazard, "ask") == "deny" or (unrequested and hazard != "unrequested")
             (denies if wants_deny and severity >= p["deny_severity"] else asks).append((hazard, prob))

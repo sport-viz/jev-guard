@@ -44,6 +44,8 @@ def evaluate(hook_input: dict, assess=jev.assess) -> Decision:
 
     state, has_request = context.build_state(hook_input, rule.facts, project)
     log["has_user_request"] = has_request
+    if has_request:
+        log["user_request"] = context.truncate(state["user_request"], 600, 0)
     try:
         assessment = assess(state, has_request)
     except jev.JevUnavailable as exc:

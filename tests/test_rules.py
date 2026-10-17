@@ -59,6 +59,19 @@ def test_shell_tampering_with_guard_asks(env, command):
     assert check(env, "Bash", command=command).action == "ask"
 
 
+@pytest.mark.parametrize("command", [
+    "git commit -q -F - <<'EOF'\nInstall to ~/.claude/jev-guard and edit .claude/settings\nEOF",
+    "git commit -m 'document ~/.claude/jev-guard install'",
+    "git commit --message='mention .claude/settings.json'",
+])
+def test_messages_about_the_guard_do_not_trip_self_protection(env, command):
+    assert check(env, "Bash", command=command).action == "pass"
+
+
+def test_unparseable_command_mentioning_guard_still_asks(env):
+    assert check(env, "Bash", command="cat ~/.claude/jev-guard/x 'unterminated").action == "ask"
+
+
 def test_plain_read_of_settings_is_allowed(env):
     assert check(env, "Bash", command="cat ~/.claude/settings.json").fast_path
 

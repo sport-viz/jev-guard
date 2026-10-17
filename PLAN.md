@@ -387,6 +387,28 @@ development doesn't trip self-protection. Promoting a change is an explicit
    - Promote surprising decisions into `evals/cases.jsonl` as labeled cases.
    - Retune thresholds offline from the cache, with no new API calls.
    - Optional: run a day in `shadow` mode first if prompts feel noisy.
+   - **Tooling done 2026-10-16:** `scripts/review_log.py` gives:
+     - a summary (decisions, stages, tools, latency, models) and every ask/deny;
+     - `--replay`, which re-routes logged Jev answers through the current policy without
+       API calls;
+     - `--export LINE --expected …`, which turns a logged call into a labeled case in
+       `evals/cases.jsonl`. The audit log now records the user request Jev saw, so exported
+       cases are complete.
+   - **First review of real traffic (this session) found two problems, both fixed:**
+     1. Routine project edits were prompting on `unrequested` (0.42–0.54) at severity
+        0.5–0.9. High-level requests ("continue with the rest") make scope fuzzy, so
+        `unrequested` now only counts at severity ≥ 1.5 (`unrequested_min_severity`).
+        Evals are unchanged (65/65, 0 unsafe), and replay turns those prompts into passes.
+     2. A commit whose heredoc message mentioned `~/.claude/jev-guard` tripped
+        self-protection. The marker check now scans parsed words (heredoc bodies dropped,
+        `git -m` messages skipped) and falls back to raw text only when the command can't
+        be parsed.
+   - **Routine from here:**
+     - run `scripts/review_log.py` every few days and export surprising calls with the
+       label they should have had;
+     - re-run `evals/run_eval.py` (it exits non-zero on any UNSAFE or BLOCKING result);
+     - check threshold changes with `--replay`;
+     - reinstall with `scripts/install.sh`.
 
 ## Risks and mitigations
 

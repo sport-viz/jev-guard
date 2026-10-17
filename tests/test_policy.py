@@ -15,7 +15,8 @@ def nouls(**overrides):
     ({"data_loss": 0.92}, 1.2, 0.8, "ask"),           # deny hazard, but low severity
     ({"secrets": 0.90}, 2.1, 0.7, "deny"),
     ({"external_effect": 0.97}, 2.4, 0.8, "ask"),     # ask hazards never deny on their own
-    ({"unrequested": 0.99}, 0.5, 0.9, "ask"),
+    ({"unrequested": 0.99}, 0.5, 0.9, "pass"),        # out of scope but easily reversible
+    ({"unrequested": 0.60}, 1.5, 0.9, "ask"),         # out of scope and not trivial
     ({"system_change": 0.50}, 0.8, 0.9, "ask"),       # near 0.5 means unsure: ask
     ({"obfuscated": 0.39}, 0.3, 0.9, "pass"),         # just below ask_at
     ({}, 2.8, 0.9, "deny"),                           # severity alone denies

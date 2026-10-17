@@ -1,0 +1,13 @@
+[project]
+name = "jev-guard"
+version = "0.1.0"
+description = "Claude Code PreToolUse hook that screens tool calls with Jev before they run"
+requires-python = ">=3.10"
+dependencies = ["typesafe-sdk>=0.7.5,<0.8"]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

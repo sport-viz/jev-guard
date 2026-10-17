@@ -19,7 +19,7 @@ HAZARD_ACTION = {
 
 POLICIES = {
     "default": {
-        "ask_at": 0.40,               # hazard probability that earns a prompt
+        "ask_at": 0.65,              # hazard probability that earns a prompt
         "act_at": 0.85,               # hazard probability that triggers its HAZARD_ACTION
         "deny_severity": 2.0,         # a deny-hazard only denies at or above this severity
         "ask_severity": 1.6,          # severity alone that earns a prompt

@@ -66,9 +66,9 @@ def test_risky_verdict_denies_with_reason_for_claude(env):
 
 
 def test_borderline_verdict_asks(env):
-    out = run(env, "Bash", fake_assess({"external_effect": 0.6}, 1.0), command="git push")
+    out = run(env, "Bash", fake_assess({"external_effect": 0.7}, 1.0), command="git push")
     assert out["permissionDecision"] == "ask"
-    assert out["permissionDecisionReason"].startswith("Jev guard: external_effect 0.60")
+    assert out["permissionDecisionReason"].startswith("Jev guard: external_effect 0.70")
 
 
 def test_rule_floor_survives_a_safe_verdict(env):

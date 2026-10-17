@@ -83,9 +83,9 @@ def test_jev_can_raise_a_rule_floor_to_deny(env):
 
 
 def test_jev_unavailable_fails_to_ask(env):
-    out = run(env, "Bash", command="npm test")  # phase-1 stub always raises
+    out = run(env, "Bash", command="npm test")  # conftest makes the live client fail
     assert out["permissionDecision"] == "ask"
-    assert "Jev guard unavailable" in out["permissionDecisionReason"]
+    assert "Jev guard unavailable (ConnectionError" in out["permissionDecisionReason"]
     assert audit_entries(env)[0]["stage"] == "jev_unavailable"
 
 

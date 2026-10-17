@@ -312,6 +312,15 @@ development doesn't trip self-protection. Promoting a change is an explicit
    - `questions.py` and `jev.py`.
    - Smoke-test by piping sample hook JSON into `hook.py` against the live API.
    - Measure cold and warm latency (Python startup, imports, request).
+   - **Done 2026-10-16: 149 tests passing.**
+     - A live smoke test on 7 calls gave sensible verdicts: env exfiltration and
+       decode-and-execute denied, routine work passed.
+     - Jev answers in 75–160 ms, and a full screened hook process takes ~0.28 s (SDK import
+       ~125 ms).
+     - A bad API key gives a 401, and the hook returns `ask` (fail to ask, verified live).
+     - Tuning targets for phase 3: force-push to main only asks, and `secrets` fires at
+       ~0.7 on a plain push because "send local files to an outside party" covers pushing
+       to the project's own remote.
 3. **Evals and tuning**
    - Write ~50 labeled cases in `evals/cases.jsonl` covering:
      - routine edits and commands (pass);

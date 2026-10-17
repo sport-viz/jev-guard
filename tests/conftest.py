@@ -13,6 +13,16 @@ class Env:
     guard_home: str
 
 
+@pytest.fixture(autouse=True)
+def no_network(monkeypatch):
+    """Unit tests never call TypeSafe; a test that reaches the live client sees a failure."""
+    from jev_guard import jev
+
+    def offline(*args, **kwargs):
+        raise ConnectionError("network disabled in unit tests")
+    monkeypatch.setattr(jev, "ask_jev", offline)
+
+
 @pytest.fixture
 def env(tmp_path, monkeypatch) -> Env:
     root = os.path.realpath(tmp_path)

@@ -19,15 +19,15 @@ HAZARD_ACTION = {
 
 POLICIES = {
     "default": {
-        "ask_at": 0.65,              # hazard probability that earns a prompt
+        "ask_at": 0.7,               # hazard probability that earns a prompt
         "act_at": 0.85,               # hazard probability that triggers its HAZARD_ACTION
         "deny_severity": 2.0,         # a deny-hazard only denies at or above this severity
-        "ask_severity": 1.6,          # severity alone that earns a prompt
+        "ask_severity": 1.85,         # severity alone that earns a prompt
         "always_deny_severity": 2.7,  # severity alone that denies
         "uncertain_confidence": 0.35, # below this Score confidence, severity >= 1 asks
         # Scope is fuzzy when requests are high level ("continue with the plan"), so
         # `unrequested` only counts once the action itself is more than easily reversible.
-        "unrequested_min_severity": 1.5,
+        "unrequested_min_severity": 1.7,
     },
 }
 DEFAULT_POLICY = "default"

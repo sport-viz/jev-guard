@@ -6,9 +6,10 @@ are truncated and only facts code knows exactly are included.
 
 import json
 import os
+import re
 import subprocess
 
-from jev_guard import config
+from jev_guard import config, rules
 
 TOOL_DESCRIPTIONS = {
     "Bash": "Runs a shell command on the user's machine.",
@@ -23,6 +24,37 @@ TOOL_DESCRIPTIONS = {
     "WebFetch": "Fetches a URL over the network and reads the page.",
     "WebSearch": "Runs a web search.",
     "Agent": "Starts a sub-agent that carries out the given task with its own tool calls.",
+    # Antigravity (agy)
+    "run_command": "Runs a shell command on the user's machine.",
+    "write_file": "Creates a file, or replaces or appends to an existing file.",
+    "write_to_file": "Creates a file, or replaces an existing file's entire contents.",
+    "edit_file": "Replaces text inside an existing file.",
+    "replace_file_content": "Replaces text inside an existing file.",
+    "multi_replace_file_content": "Makes several text replacements inside an existing file.",
+    "read_file": "Reads a file.",
+    "view_file": "Reads a file.",
+    "view_file_outline": "Reads the symbol outline of a file.",
+    "view_code_item": "Reads a specific function or class in a file.",
+    "grep_search": "Searches file contents.",
+    "find_by_name": "Lists files matching a pattern.",
+    "list_dir": "Lists the contents of a directory.",
+    "search_web": "Runs a web search.",
+    "read_url_content": "Fetches a URL over the network and reads the page.",
+    "invoke_subagent": "Starts a sub-agent that carries out the given task with its own tool calls.",
+    "define_subagent": "Defines a new sub-agent type for the current conversation.",
+    "manage_subagents": "Lists or terminates running sub-agents.",
+    "manage_task": "Lists, inspects, sends input to, or terminates background tasks.",
+    "send_message": "Sends a message to another agent in the conversation.",
+    "schedule": "Schedules a timer or recurring cron job that wakes the agent.",
+    "ask_question": "Asks the user multiple-choice questions and waits for answers.",
+    # Pi (pi-coding-agent)
+    "bash": "Runs a shell command on the user's machine.",
+    "write": "Creates a file, or replaces an existing file's entire contents.",
+    "edit": "Replaces text inside an existing file.",
+    "read": "Reads a file.",
+    "grep": "Searches file contents.",
+    "find": "Lists files matching a pattern.",
+    "ls": "Lists the contents of a directory.",
 }
 
 # Per-field character budgets: (head, tail). Fields not listed use DEFAULT_BUDGET.
@@ -32,6 +64,17 @@ FIELD_BUDGETS = {
     ("Edit", "new_string"): (800, 0),
     ("Bash", "command"): (2000, 800),
     ("PowerShell", "command"): (2000, 800),
+    ("write_file", "Content"): (1500, 500),
+    ("write_to_file", "CodeContent"): (1500, 500),
+    ("edit_file", "Target"): (800, 0),
+    ("edit_file", "Replacement"): (800, 0),
+    ("replace_file_content", "TargetContent"): (800, 0),
+    ("replace_file_content", "ReplacementContent"): (800, 0),
+    ("run_command", "CommandLine"): (2000, 800),
+    ("write", "content"): (1500, 500),
+    ("edit", "oldText"): (800, 0),
+    ("edit", "newText"): (800, 0),
+    ("bash", "command"): (2000, 800),
 }
 DEFAULT_BUDGET = (1200, 300)
 MAX_LIST_ITEMS = 20
@@ -77,14 +120,43 @@ def describe_tool(tool_name: str, mcp_server: dict | None) -> str:
 
 # --- transcript ------------------------------------------------------------------------
 
+_USER_REQUEST_RE = re.compile(r"<USER_REQUEST>\s*(.*?)\s*</USER_REQUEST>", re.DOTALL)
+_USER_LINE_MARKERS = (
+    '"type":"user"',
+    '"type": "user"',
+    '"type":"USER_INPUT"',
+    '"type": "USER_INPUT"',
+    '"role":"user"',
+    '"role": "user"',
+)
+
+
 def _prompt_text(entry: dict) -> str | None:
     """The text of a real user prompt, or None for tool results, meta and command entries."""
-    if entry.get("type") != "user" or entry.get("isMeta") or entry.get("isSidechain"):
+    entry_type = entry.get("type")
+    if entry_type == "USER_INPUT":
+        if entry.get("source") not in (None, "USER_EXPLICIT"):
+            return None
+        content = entry.get("content")
+        if not isinstance(content, str) or not content.strip():
+            return None
+        match = _USER_REQUEST_RE.search(content)
+        text = match.group(1).strip() if match else content.strip()
+        return text or None
+
+    if entry_type == "message":
+        message = entry.get("message") or {}
+        if message.get("role") != "user":
+            return None
+        content = message.get("content")
+    elif entry_type == "user" and not entry.get("isMeta") and not entry.get("isSidechain"):
+        origin = entry.get("origin")
+        if isinstance(origin, dict) and origin.get("kind") not in (None, "human"):
+            return None
+        content = (entry.get("message") or {}).get("content")
+    else:
         return None
-    origin = entry.get("origin")
-    if isinstance(origin, dict) and origin.get("kind") not in (None, "human"):
-        return None
-    content = (entry.get("message") or {}).get("content")
+
     if isinstance(content, list):
         if any(isinstance(b, dict) and b.get("type") == "tool_result" for b in content):
             return None
@@ -115,7 +187,7 @@ def user_request(transcript_path: str | None,
                 lines = f.read().decode("utf-8", errors="replace").splitlines()
                 prompts = []
                 for line in reversed(lines):
-                    if '"type":"user"' not in line and '"type": "user"' not in line:
+                    if not any(m in line for m in _USER_LINE_MARKERS):
                         continue
                     try:
                         text = _prompt_text(json.loads(line))
@@ -183,12 +255,18 @@ def build_state(hook_input: dict, rule_facts: dict, project: str) -> tuple[dict,
     for key in ("unresolved_write_targets", "sensitive_read", "shell_parse_failed"):
         if rule_facts.get(key):
             facts[key] = rule_facts[key]
-    if tool_name in {"Bash", "PowerShell"} and "git" in str(tool_input.get("command", "")):
+    if tool_name in rules.SHELL_TOOLS and "git" in rules.shell_command(tool_input):
         facts["project_git"] = project_git_facts(project)
     if isinstance(mcp_server, dict) and mcp_server.get("source"):
         facts["mcp_server_source"] = mcp_server["source"]
 
-    request = user_request(hook_input.get("transcript_path"))
+    request = hook_input.get("user_request") or user_request(hook_input.get("transcript_path"))
+    last_input = (hook_input.get("last_user_input") or "").strip()
+    if last_input:
+        if not request:
+            request = truncate(last_input, config.USER_REQUEST_MAX_CHARS - 100, 0)
+        elif last_input not in request:
+            request = truncate(f"{request}\n---\n{last_input}", config.USER_REQUEST_MAX_CHARS - 100, 0)
     state = {
         "session": {
             "project_dir": project,

@@ -94,3 +94,30 @@ def test_build_state_shape(env, tmp_path):
     hook_input.pop("transcript_path")
     state, has_request = context.build_state(hook_input, {}, env.project)
     assert not has_request and "user_request" not in state and "facts" not in state
+
+
+def test_agy_and_pi_transcript_and_user_request(env, tmp_path):
+    agy_transcript = write_transcript(tmp_path / "agy.jsonl", [
+        {"type": "USER_INPUT", "source": "USER_EXPLICIT",
+         "content": "<USER_REQUEST>\nSupport agy and pi\n</USER_REQUEST>\n<ADDITIONAL_METADATA/>"},
+        {"type": "PLANNER_RESPONSE", "source": "MODEL", "content": "working"},
+        {"type": "USER_INPUT", "source": "SYSTEM", "content": "system wakeup"},
+        {"type": "USER_INPUT", "source": "USER_EXPLICIT",
+         "content": "<USER_REQUEST>\nYes implement now\n</USER_REQUEST>"},
+    ])
+    assert context.user_request(agy_transcript) == "Support agy and pi\n---\nYes implement now"
+
+    pi_transcript = write_transcript(tmp_path / "pi.jsonl", [
+        {"type": "session", "id": "s1"},
+        {"type": "message", "message": {"role": "user", "content": "fix the bug"}},
+        {"type": "message", "message": {"role": "assistant", "content": "ok"}},
+        {"type": "message", "message": {"role": "user", "content": [{"type": "text", "text": "and run tests"}]}},
+    ])
+    assert context.user_request(pi_transcript) == "fix the bug\n---\nand run tests"
+
+    # last_user_input fallback when transcript hasn't flushed yet
+    hook_input = {"tool_name": "run_command", "tool_input": {"CommandLine": "git status"},
+                  "cwd": env.project, "last_user_input": "check status"}
+    state, has_request = context.build_state(hook_input, {}, env.project)
+    assert has_request and state["user_request"] == "check status"
+    assert "project_git" in state["facts"]

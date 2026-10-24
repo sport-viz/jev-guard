@@ -1,6 +1,6 @@
 # Jev Guard
 
-A Claude Code `PreToolUse` hook that screens every tool call with
+A `PreToolUse` / `tool_call` guard for **Claude Code**, **Antigravity (`agy`)**, and **Pi (`pi-coding-agent`)** that screens every tool call with
 [Jev](https://typesafe.ai) (TypeSafe's System One model) before it runs. Dangerous calls are
 denied, borderline ones force a permission prompt (even in auto mode), and everything else
 passes through untouched.
@@ -47,12 +47,13 @@ Screening costs roughly $0.00003 per call at about 800 tokens.
 ```sh
 uv sync                                   # create .venv
 scripts/install.sh                        # run tests, copy to ~/.claude/jev-guard, smoke test
-.venv/bin/python scripts/configure_settings.py --dry-run   # preview the settings change
-.venv/bin/python scripts/configure_settings.py             # add the hook to ~/.claude/settings.json
+.venv/bin/python scripts/configure_settings.py --dry-run   # preview changes for claude, agy, and pi
+.venv/bin/python scripts/configure_settings.py             # configure ~/.claude/settings.json, ~/.gemini/config/hooks.json, and ~/.pi/agent/extensions/jev-guard.ts
 ```
 
-The installed copy under `~/.claude/jev-guard` (override with `JEV_GUARD_HOME`) is what the
-hook actually runs. Repo edits take effect only after re-running `scripts/install.sh`.
+Use `--target claude|agy|pi|all` to configure a specific coding agent.
+The installed copy under `~/.claude/jev-guard` (override with `JEV_GUARD_HOME`) is what all
+three agents actually run. Repo edits take effect only after re-running `scripts/install.sh`.
 
 To remove the hook: `.venv/bin/python scripts/configure_settings.py --remove`.
 

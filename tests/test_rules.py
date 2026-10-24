@@ -165,3 +165,69 @@ def test_everything_else_reaches_jev(env, tool, tool_input):
 def test_sensitive_read_is_flagged_for_jev(env):
     result = check(env, "Read", file_path="~/.ssh/id_rsa")
     assert result.facts["sensitive_read"] == f"{env.home}/.ssh/id_rsa"
+
+
+# --- Antigravity (agy) and Pi tools -------------------------------------------------------
+
+def test_agy_and_pi_catastrophic_commands_are_denied(env):
+    assert check(env, "run_command", CommandLine="rm -rf ~").action == "deny"
+    assert check(env, "bash", command="rm -rf /").action == "deny"
+
+
+@pytest.mark.parametrize("tool,kwargs", [
+    ("write_file", lambda e: {"Path": f"{e.home}/.gemini/config/hooks.json", "Content": "{}"}),
+    ("edit_file", lambda e: {"Path": f"{e.project}/.agents/hooks.json", "Target": "a", "Replacement": "b"}),
+    ("write", lambda e: {"path": f"{e.home}/.pi/agent/extensions/jev-guard.ts", "content": ""}),
+    ("edit", lambda e: {"path": f"{e.home}/.pi/agent/settings.json", "oldText": "a", "newText": "b"}),
+])
+def test_agy_and_pi_self_protection(env, tool, kwargs):
+    result = check(env, tool, **kwargs(env))
+    assert result.action == "ask"
+    assert "touches the guard or Claude Code settings" in result.reasons
+
+
+def test_agy_and_pi_artifact_and_brain_scope_exempt(env):
+    brain_file = f"{env.home}/.gemini/antigravity-cli/brain/conv-1/plan.md"
+    assert check(env, "write_file", Path=brain_file, Content="# plan").action == "pass"
+    custom_artifact = f"{env.elsewhere}/custom-brain/plan.md"
+    res = rules.check("write_file", {"Path": custom_artifact, "Content": "x"},
+                      env.project, env.project, env.home, artifact_dir=f"{env.elsewhere}/custom-brain")
+    assert res.action == "pass"
+    pi_session = f"{env.home}/.pi/agent/sessions/s1.jsonl"
+    assert check(env, "write", path=pi_session, content="{}").action == "pass"
+
+
+@pytest.mark.parametrize("tool,tool_input", [
+    ("read_file", {"Path": "/z/proj/README.md"}),
+    ("view_file", {"AbsolutePath": "/z/proj/README.md"}),
+    ("grep_search", {"Query": "TODO", "SearchPath": "/z/proj"}),
+    ("find_by_name", {"Pattern": "*.py", "SearchDirectory": "/z/proj"}),
+    ("list_dir", {"DirectoryPath": "/z/proj"}),
+    ("manage_task", {"Action": "list"}),
+    ("manage_task", {"Action": "status", "TaskId": "t1"}),
+    ("manage_subagents", {"Action": "list"}),
+    ("invoke_subagent", {"TypeName": "research", "Role": "Researcher", "Prompt": "find x"}),
+    ("run_command", {"CommandLine": "git status", "BypassSandbox": False}),
+    ("read", {"path": "/z/proj/README.md"}),
+    ("grep", {"pattern": "TODO", "path": "/z/proj"}),
+    ("find", {"pattern": "*.py", "path": "/z/proj"}),
+    ("ls", {"path": "/z/proj"}),
+    ("bash", {"command": "git status"}),
+])
+def test_agy_and_pi_fast_path(env, tool, tool_input):
+    assert rules.check(tool, tool_input, env.project, env.project, env.home).fast_path
+
+
+@pytest.mark.parametrize("tool,tool_input", [
+    ("read_file", {"Path": "~/.ssh/id_rsa"}),
+    ("run_command", {"CommandLine": "git status", "BypassSandbox": True}),
+    ("manage_task", {"Action": "kill", "TaskId": "t1"}),
+    ("manage_task", {"Action": "send_input", "TaskId": "t1", "Input": "rm -rf /"}),
+    ("manage_subagents", {"Action": "kill_all"}),
+    ("schedule", {"Prompt": "wake up", "DurationSeconds": 10}),
+    ("read", {"path": "~/.ssh/id_rsa"}),
+    ("write", {"path": "/z/proj/a.py", "content": "x"}),
+])
+def test_agy_and_pi_non_fast_path_reaches_jev(env, tool, tool_input):
+    res = rules.check(tool, tool_input, env.project, env.project, env.home)
+    assert not res.fast_path and res.action != "deny"

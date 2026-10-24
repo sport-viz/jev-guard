@@ -72,7 +72,10 @@ def summarize(entries: list[tuple[int, dict]]) -> list[str]:
 
 def target(entry: dict) -> str:
     tool_input = entry.get("input") or {}
-    text = tool_input.get("command") or tool_input.get("file_path") or json.dumps(tool_input)
+    text = (tool_input.get("command") or tool_input.get("CommandLine")
+            or tool_input.get("file_path") or tool_input.get("Path")
+            or tool_input.get("TargetFile") or tool_input.get("path")
+            or json.dumps(tool_input))
     return f"{entry['stage']:15} {entry['tool']:10} {' '.join(str(text).split())[:90]}"
 
 

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Jev Guard is a Claude Code `PreToolUse` hook. It screens each tool call with Jev (TypeSafe's System One model, via `typesafe-sdk`) before the call runs. It returns `deny`, `ask`, or no opinion. `PLAN.md` holds the design rationale, the verified platform facts and the decisions already made. Read it before changing behavior.
+Jev Guard is a `PreToolUse` / `tool_call` guard for Claude Code (`~/.claude/settings.json`), Antigravity (`agy`, `~/.gemini/config/hooks.json`), and Pi (`~/.pi/agent/extensions/jev-guard.ts`). It screens each tool call with Jev (TypeSafe's System One model, via `typesafe-sdk`) before the call runs. It returns `deny`, `ask`, or no opinion (`allow`). `PLAN.md` holds the design rationale, the verified platform facts and the decisions already made. Read it before changing behavior.
 
 ## Commands
 
@@ -19,7 +19,7 @@ Use the uv-managed venv at `.venv`.
 .venv/bin/python evals/run_eval.py --show inject_        # full signals for matching cases
 .venv/bin/python scripts/review_log.py [--since DATE] [--replay]   # review the audit log
 scripts/install.sh                               # run tests, copy to ~/.claude/jev-guard, smoke test
-.venv/bin/python scripts/configure_settings.py [--dry-run|--remove]  # add or remove the hook in ~/.claude/settings.json
+.venv/bin/python scripts/configure_settings.py [--target claude|agy|pi|all] [--dry-run|--remove]  # configure agent hooks/extensions
 ```
 
 ## Architecture

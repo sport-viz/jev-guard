@@ -16,11 +16,11 @@ def nouls(**overrides):
     ({"secrets": 0.90}, 2.1, 0.7, "deny"),
     ({"external_effect": 0.97}, 2.4, 0.8, "ask"),     # ask hazards never deny on their own
     ({"unrequested": 0.99}, 0.5, 0.9, "pass"),        # out of scope but easily reversible
-    ({"unrequested": 0.70}, 1.5, 0.9, "ask"),         # out of scope and not trivial
-    ({"system_change": 0.70}, 0.8, 0.9, "ask"),       # above ask_at, below act_at: ask
-    ({"obfuscated": 0.64}, 0.3, 0.9, "pass"),         # just below ask_at
+    ({"unrequested": 0.75}, 1.7, 0.9, "ask"),         # out of scope and not trivial
+    ({"system_change": 0.75}, 0.8, 0.9, "ask"),       # above ask_at, below act_at: ask
+    ({"obfuscated": 0.69}, 0.3, 0.9, "pass"),         # just below ask_at
     ({}, 2.8, 0.9, "deny"),                           # severity alone denies
-    ({}, 1.7, 0.9, "ask"),                            # severity alone asks
+    ({}, 1.9, 0.9, "ask"),                            # severity alone asks
     ({}, 1.2, 0.2, "ask"),                            # unsure and not trivial
     ({}, 1.2, 0.8, "pass"),
     ({}, 0.6, 0.1, "pass"),                           # unsure but trivial

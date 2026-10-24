@@ -15,15 +15,41 @@ from dataclasses import dataclass, field
 from jev_guard import config, shell
 
 READ_ONLY_TOOLS = {
+    # Claude Code
     "Read", "Glob", "Grep", "LS", "NotebookRead", "LSP", "ToolSearch", "Skill",
     "TodoWrite", "TaskCreate", "TaskUpdate", "TaskList", "TaskGet", "TaskOutput",
     "AskUserQuestion", "EnterPlanMode", "ExitPlanMode", "ListAgents", "CronList",
+    # Antigravity (agy)
+    "read_file", "view_file", "view_file_outline", "view_code_item", "view_content_chunk",
+    "grep_search", "find_by_name", "list_dir", "list_directory", "list_resources",
+    "read_resource", "read_notebook", "command_status", "ask_question",
+    "code_search", "trajectory_search", "tool_search", "find_all_references",
+    # Pi (pi-coding-agent)
+    "read", "grep", "find", "ls",
 }
-FILE_WRITE_TOOLS = {"Write": "file_path", "Edit": "file_path", "MultiEdit": "file_path",
-                    "NotebookEdit": "notebook_path"}
-FILE_READ_TOOLS = {"Read": "file_path", "Grep": "path", "Glob": "path", "LS": "path",
-                   "NotebookRead": "notebook_path"}
-SHELL_TOOLS = {"Bash", "PowerShell"}
+FILE_WRITE_TOOLS = {
+    # Claude Code
+    "Write": "file_path", "Edit": "file_path", "MultiEdit": "file_path",
+    "NotebookEdit": "notebook_path",
+    # Antigravity (agy)
+    "write_file": "Path", "edit_file": "Path", "write_to_file": "TargetFile",
+    "replace_file_content": "TargetFile", "multi_replace_file_content": "TargetFile",
+    "edit_notebook": "Path",
+    # Pi (pi-coding-agent)
+    "write": "path", "edit": "path",
+}
+FILE_READ_TOOLS = {
+    # Claude Code
+    "Read": "file_path", "Grep": "path", "Glob": "path", "LS": "path",
+    "NotebookRead": "notebook_path",
+    # Antigravity (agy)
+    "read_file": "Path", "view_file": "AbsolutePath", "view_file_outline": "AbsolutePath",
+    "view_code_item": "File", "grep_search": "SearchPath", "find_by_name": "SearchDirectory",
+    "list_dir": "DirectoryPath", "list_directory": "DirectoryPath", "read_notebook": "Path",
+    # Pi (pi-coding-agent)
+    "read": "path", "grep": "path", "find": "path", "ls": "path",
+}
+SHELL_TOOLS = {"Bash", "PowerShell", "run_command", "bash"}
 
 # Single read-only commands that skip Jev when they have no operators or redirections.
 SAFE_COMMANDS = {
@@ -45,7 +71,10 @@ SYSTEM_DIRS = {"/", "/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/lib64", 
                "/proc", "/root", "/sbin", "/sys", "/usr", "/var", "/srv", "/mnt"}
 DISK_DEVICE = re.compile(r"^/dev/(sd[a-z]|nvme\d|hd[a-z]|vd[a-z]|xvd[a-z]|mmcblk\d|disk\d)")
 FORK_BOMB = re.compile(r":\s*\(\s*\)\s*\{\s*:\s*\|\s*:\s*&\s*\}\s*;\s*:")
-GUARD_MARKERS = ("jev-guard", "jev_guard_mode", ".claude/settings")
+GUARD_MARKERS = (
+    "jev-guard", "jev_guard_mode", ".claude/settings",
+    "hooks.json", ".pi/agent/extensions", ".pi/extensions", "jev-guard.ts",
+)
 
 
 @dataclass
@@ -91,17 +120,54 @@ def is_sensitive(path: str, home: str) -> bool:
 
 
 def is_protected(path: str, home: str) -> bool:
-    """The guard itself and Claude Code settings: the agent must not disable its own guard."""
+    """The guard itself and agent hook/extension settings: the agent must not disable its own guard."""
     guard = os.path.realpath(str(config.guard_home()))
     name = os.path.basename(path)
-    return (within(path, guard)
-            or (fnmatch.fnmatch(name, "settings*.json")
-                and os.path.basename(os.path.dirname(path)) == ".claude"))
+    parent_dir = os.path.dirname(path)
+    parent = os.path.basename(parent_dir)
+    grandparent = os.path.basename(os.path.dirname(parent_dir))
+    if within(path, guard):
+        return True
+    # Claude Code settings
+    if fnmatch.fnmatch(name, "settings*.json") and parent == ".claude":
+        return True
+    # Antigravity (agy) hooks and customization settings
+    if name == "hooks.json":
+        return True
+    if name in {"settings.json", "config.json", "plugins.json"} and (
+        parent in {".agents", ".agent", "_agents", "_agent"}
+        or within(path, os.path.join(home, ".gemini"))
+    ):
+        return True
+    # Pi extensions and settings
+    if within(path, os.path.join(home, ".pi", "agent", "extensions")):
+        return True
+    if parent == "extensions" and grandparent == ".pi":
+        return True
+    if fnmatch.fnmatch(name, "settings*.json") and (
+        parent == ".pi" or within(path, os.path.join(home, ".pi"))
+    ):
+        return True
+    return False
 
 
-def scope_violation(path: str, project: str, home: str) -> str | None:
+def scope_violation(path: str, project: str, home: str,
+                    artifact_dir: str | None = None) -> str | None:
     """Why a write to `path` needs the user's confirmation, or None if it's in scope."""
-    if within(path, config.scratch_root()) or within(path, os.path.join(home, ".claude", "projects")):
+    exempt_roots = [
+        config.scratch_root(),
+        os.path.join(home, ".claude", "projects"),
+        os.path.join(home, ".gemini", "antigravity", "brain"),
+        os.path.join(home, ".gemini", "antigravity-cli", "brain"),
+        os.path.join(home, ".gemini", "antigravity-ide", "brain"),
+        os.path.join(home, ".gemini", "antigravity", "conversations"),
+        os.path.join(home, ".gemini", "antigravity-cli", "conversations"),
+        os.path.join(home, ".gemini", "antigravity-ide", "conversations"),
+        os.path.join(home, ".pi", "agent", "sessions"),
+    ]
+    if artifact_dir:
+        exempt_roots.append(os.path.realpath(artifact_dir))
+    if any(within(path, root) for root in exempt_roots):
         return None
     if within(path, home) and path != home:
         first = os.path.relpath(path, home).split("/")[0]
@@ -196,14 +262,33 @@ def is_safe_command(parsed: shell.ParsedCommand, cwd: str, home: str) -> bool:
     return True
 
 
+def shell_command(tool_input: dict) -> str:
+    """Command string from a Claude/Pi (`command`) or Antigravity (`CommandLine`) shell tool."""
+    if "command" in tool_input:
+        return str(tool_input.get("command") or "")
+    return str(tool_input.get("CommandLine") or "")
+
+
+def _read_target(tool_name: str, tool_input: dict) -> str:
+    key = FILE_READ_TOOLS.get(tool_name)
+    if key and tool_input.get(key):
+        return str(tool_input[key])
+    for fallback in ("Path", "path", "file_path", "AbsolutePath", "SearchPath",
+                     "SearchDirectory", "DirectoryPath"):
+        if tool_input.get(fallback):
+            return str(tool_input[fallback])
+    return ""
+
+
 # --- entry point -----------------------------------------------------------------------
 
-def check(tool_name: str, tool_input: dict, cwd: str, project: str, home: str) -> RuleResult:
+def check(tool_name: str, tool_input: dict, cwd: str, project: str, home: str,
+          artifact_dir: str | None = None) -> RuleResult:
     result = RuleResult()
     cwd = os.path.realpath(cwd or project)
 
     if tool_name in SHELL_TOOLS:
-        command = str(tool_input.get("command", ""))
+        command = shell_command(tool_input)
         if tool_name == "PowerShell":
             return result  # not parsed; Jev decides
         parsed = shell.parse(command)
@@ -223,12 +308,12 @@ def check(tool_name: str, tool_input: dict, cwd: str, project: str, home: str) -
         if unresolved:
             result.facts["unresolved_write_targets"] = sorted(set(unresolved))
 
-        safe = is_safe_command(parsed, cwd, home)
+        safe = is_safe_command(parsed, cwd, home) and not tool_input.get("BypassSandbox")
         if any(is_protected(t, home) for t in targets) or (mentions_guard(parsed) and not safe):
             result.action = "ask"
             result.reasons.append("touches the guard or Claude Code settings")
         for path in targets:
-            violation = scope_violation(path, project, home)
+            violation = scope_violation(path, project, home, artifact_dir)
             if violation:
                 result.action = "ask"
                 result.reasons.append(violation)
@@ -243,22 +328,30 @@ def check(tool_name: str, tool_input: dict, cwd: str, project: str, home: str) -
             if is_protected(path, home):
                 result.action = "ask"
                 result.reasons.append("touches the guard or Claude Code settings")
-            violation = scope_violation(path, project, home)
+            violation = scope_violation(path, project, home, artifact_dir)
             if violation:
                 result.action = "ask"
                 result.reasons.append(violation)
         return result
 
     if tool_name in READ_ONLY_TOOLS:
-        key = FILE_READ_TOOLS.get(tool_name)
-        path = resolve(str(tool_input.get(key, "")), cwd, home) if key else None
+        raw_target = _read_target(tool_name, tool_input)
+        path = resolve(raw_target, cwd, home) if raw_target else None
         if path and is_sensitive(path, home):
             result.facts["sensitive_read"] = path
             return result  # Jev's secrets question decides
         result.fast_path = True
         return result
 
-    if tool_name == "Agent" and tool_input.get("isolation") != "remote":
+    if tool_name == "manage_task" and tool_input.get("Action") in {"list", "status"}:
+        result.fast_path = True
+        return result
+
+    if tool_name == "manage_subagents" and tool_input.get("Action") == "list":
+        result.fast_path = True
+        return result
+
+    if (tool_name == "Agent" and tool_input.get("isolation") != "remote") or tool_name == "invoke_subagent":
         # A local sub-agent's own tool calls each pass through this hook.
         result.fast_path = True
     return result

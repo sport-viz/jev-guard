@@ -137,3 +137,60 @@ def test_script_entry_point_runs_standalone(env):
                             capture_output=True, text=True, cwd="/", env=os.environ.copy(), timeout=30)
     assert result.returncode == 0, result.stderr
     assert json.loads(result.stdout)["hookSpecificOutput"]["permissionDecision"] == "deny"
+
+
+def test_agy_hook_always_emits_decision(env, monkeypatch):
+    assess = fake_assess()
+    # Fast-path must emit {"decision": "allow"} so agy does not treat empty stdout as deny
+    fast_payload = {
+        "conversationId": "c1",
+        "workspacePaths": [env.project],
+        "toolCall": {"name": "read_file", "args": {"Path": f"{env.project}/a.py"}},
+    }
+    out = io.StringIO()
+    assert hook.main(io.StringIO(json.dumps(fast_payload)), out, assess, argv=["--host", "agy"]) == 0
+    assert json.loads(out.getvalue()) == {"decision": "allow"}
+    assert assess.calls == []
+
+    # Safe Jev verdict on agy emits {"decision": "allow"}
+    safe_payload = {
+        "conversationId": "c1",
+        "workspacePaths": [env.project],
+        "lastUserInput": "run tests",
+        "toolCall": {"name": "run_command", "args": {"CommandLine": "pytest -q"}},
+    }
+    out = io.StringIO()
+    assert hook.main(io.StringIO(json.dumps(safe_payload)), out, assess, argv=["--host", "agy"]) == 0
+    assert json.loads(out.getvalue()) == {"decision": "allow"}
+    assert len(assess.calls) == 1 and assess.calls[0][0]["user_request"] == "run tests"
+
+    # Hard-rule deny on agy emits {"decision": "deny", "reason": ...}
+    deny_payload = {
+        "workspacePaths": [env.project],
+        "toolCall": {"name": "run_command", "args": {"CommandLine": "rm -rf ~"}},
+    }
+    out = io.StringIO()
+    assert hook.main(io.StringIO(json.dumps(deny_payload)), out, assess, argv=["--host", "agy"]) == 0
+    res = json.loads(out.getvalue())
+    assert res["decision"] == "deny" and "never run automatically" in res["reason"]
+
+    # Off mode and shadow mode on agy still emit {"decision": "allow"}
+    monkeypatch.setenv("JEV_GUARD_MODE", "off")
+    out = io.StringIO()
+    assert hook.main(io.StringIO(json.dumps(deny_payload)), out, assess, argv=["--host", "agy"]) == 0
+    assert json.loads(out.getvalue()) == {"decision": "allow"}
+
+
+def test_pi_hook_protocol(env):
+    assess = fake_assess({"external_effect": 0.72}, 1.1)
+    pi_payload = {
+        "host": "pi",
+        "cwd": env.project,
+        "tool_name": "bash",
+        "tool_input": {"command": "git push origin main"},
+        "user_request": "run tests",
+    }
+    out = io.StringIO()
+    assert hook.main(io.StringIO(json.dumps(pi_payload)), out, assess, argv=["--host", "pi"]) == 0
+    res = json.loads(out.getvalue())
+    assert res["decision"] == "ask" and "external_effect" in res["reason"]

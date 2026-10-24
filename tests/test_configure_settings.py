@@ -33,3 +33,21 @@ def test_entry_fails_closed_on_broken_install():
     hook = configure_settings.ENTRY["hooks"][0]
     assert hook["onFailure"] == "block" and hook["timeout"] == 20
     assert configure_settings.ENTRY["matcher"] == "*"
+
+
+def test_configure_agy_add_and_remove():
+    existing = {"other-hook": {"PostToolUse": [{"matcher": "*", "hooks": [{"type": "command", "command": "echo ok"}]}]}}
+    out = configure_settings.configure_agy(dict(existing), remove=False)
+    assert "other-hook" in out
+    assert out["jev-guard"]["PreToolUse"] == [configure_settings.AGY_ENTRY]
+    assert "--host agy" in configure_settings.AGY_ENTRY["hooks"][0]["command"]
+    removed = configure_settings.configure_agy(out, remove=True)
+    assert "jev-guard" not in removed and "other-hook" in removed
+
+
+def test_configure_pi_add_and_remove(env, tmp_path):
+    ext = tmp_path / "extensions" / "jev-guard.ts"
+    configure_settings.configure_pi(ext, remove=False)
+    assert ext.exists() and "jevGuardExtension" in ext.read_text()
+    configure_settings.configure_pi(ext, remove=True)
+    assert not ext.exists()

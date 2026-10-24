@@ -5,17 +5,19 @@ becomes "ask" (fail to ask): the user decides when the guard can't.
 """
 
 import json
+import os
 import sys
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
 
-if __package__ in (None, ""):  # run as a script by Claude Code
+if __package__ in (None, ""):  # run as a script by Claude Code / agy / pi
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from jev_guard import audit, config, context, jev, policy, rules  # noqa: E402
 
 RANK = {"pass": 0, "ask": 1, "deny": 2}
+HOSTS = {"claude", "agy", "pi"}
 
 
 @dataclass
@@ -26,13 +28,86 @@ class Decision:
     log: dict = field(default_factory=dict)
 
 
+def _cli_host(argv: list[str] | None = None) -> str:
+    args = sys.argv[1:] if argv is None else argv
+    for i, arg in enumerate(args):
+        if arg == "--host" and i + 1 < len(args) and args[i + 1] in HOSTS:
+            return args[i + 1]
+        if arg.startswith("--host="):
+            val = arg.split("=", 1)[1]
+            if val in HOSTS:
+                return val
+    env_host = os.environ.get("JEV_GUARD_HOST", "").strip().lower()
+    return env_host if env_host in HOSTS else "claude"
+
+
+def normalize_hook_input(parsed: dict, default_host: str = "claude") -> tuple[str, dict]:
+    """Detect host format (`claude`, `agy`, `pi`) and return `(host, normalized_hook_input)`."""
+    if not isinstance(parsed, dict):
+        raise ValueError("hook input is not a PreToolUse JSON object")
+
+    if "toolCall" in parsed or parsed.get("host") == "agy":
+        host = "agy"
+    elif parsed.get("host") == "pi" or "toolName" in parsed:
+        host = "pi"
+    else:
+        host = default_host
+
+    if host == "agy":
+        if "toolCall" in parsed:
+            tool_call = parsed.get("toolCall")
+            if not isinstance(tool_call, dict):
+                raise ValueError("agy toolCall is not a JSON object")
+            tool_name = tool_call.get("name", "")
+            tool_input = tool_call.get("args") if "args" in tool_call else {}
+        else:
+            tool_name = parsed.get("tool_name", "")
+            tool_input = parsed.get("tool_input", {})
+        if not isinstance(tool_input, dict):
+            raise ValueError("agy tool input is not a JSON object")
+        workspaces = parsed.get("workspacePaths") or []
+        cwd = parsed.get("cwd") or (workspaces[0] if workspaces else os.getcwd())
+        return "agy", {
+            "cwd": cwd,
+            "tool_name": tool_name,
+            "tool_input": tool_input,
+            "transcript_path": parsed.get("transcriptPath") or parsed.get("transcript_path"),
+            "artifact_dir": parsed.get("artifactDirectoryPath") or parsed.get("artifact_dir"),
+            "session_id": parsed.get("conversationId") or parsed.get("session_id"),
+            "agent_type": parsed.get("agent_type") or "agy",
+            "permission_mode": parsed.get("permission_mode"),
+            "last_user_input": parsed.get("lastUserInput") or parsed.get("last_user_input"),
+        }
+
+    if host == "pi":
+        tool_name = parsed.get("tool_name") or parsed.get("toolName") or ""
+        tool_input = parsed.get("tool_input") if "tool_input" in parsed else parsed.get("input", {})
+        if not isinstance(tool_input, dict):
+            raise ValueError("pi tool input is not a JSON object")
+        return "pi", {
+            "cwd": parsed.get("cwd") or os.getcwd(),
+            "tool_name": tool_name,
+            "tool_input": tool_input,
+            "transcript_path": parsed.get("transcript_path") or parsed.get("sessionFile"),
+            "user_request": parsed.get("user_request"),
+            "session_id": parsed.get("session_id") or parsed.get("sessionId"),
+            "agent_type": parsed.get("agent_type") or "pi",
+            "permission_mode": parsed.get("permission_mode"),
+        }
+
+    if not isinstance(parsed.get("tool_input", {}), dict):
+        raise ValueError("hook input is not a PreToolUse JSON object")
+    return "claude", parsed
+
+
 def evaluate(hook_input: dict, assess=jev.assess) -> Decision:
     tool_name = hook_input.get("tool_name", "")
     tool_input = hook_input.get("tool_input") or {}
     project = config.project_dir(hook_input.get("cwd", ""))
     home = config.home()
 
-    rule = rules.check(tool_name, tool_input, hook_input.get("cwd") or project, project, home)
+    rule = rules.check(tool_name, tool_input, hook_input.get("cwd") or project, project, home,
+                       artifact_dir=hook_input.get("artifact_dir"))
     log: dict = {"rule_action": rule.action, "rule_reasons": rule.reasons}
 
     if rule.action == "deny":
@@ -76,7 +151,13 @@ def evaluate(hook_input: dict, assess=jev.assess) -> Decision:
     return Decision(action, reason, "jev" if action == verdict.action else "rule", log)
 
 
-def output(decision: Decision) -> str:
+def output(decision: Decision, host: str = "claude") -> str:
+    if host in ("agy", "pi"):
+        action = "allow" if decision.action == "pass" else decision.action
+        payload: dict = {"decision": action}
+        if decision.action != "pass" and decision.reason:
+            payload["reason"] = decision.reason
+        return json.dumps(payload)
     return json.dumps({"hookSpecificOutput": {
         "hookEventName": "PreToolUse",
         "permissionDecision": decision.action,
@@ -84,17 +165,18 @@ def output(decision: Decision) -> str:
     }})
 
 
-def main(stdin=sys.stdin, stdout=sys.stdout, assess=jev.assess) -> int:
+def main(stdin=sys.stdin, stdout=sys.stdout, assess=jev.assess, argv: list[str] | None = None) -> int:
     started = time.monotonic()
+    host = _cli_host(argv)
     mode = config.mode()
     if mode == "off":
+        if host in ("agy", "pi"):
+            stdout.write(output(Decision("pass"), host) + "\n")
         return 0
     hook_input: dict = {}
     try:
         parsed = json.load(stdin)
-        if not isinstance(parsed, dict) or not isinstance(parsed.get("tool_input", {}), dict):
-            raise ValueError("hook input is not a PreToolUse JSON object")
-        hook_input = parsed
+        host, hook_input = normalize_hook_input(parsed, default_host=host)
         decision = evaluate(hook_input, assess)
     except Exception as exc:  # fail to ask: never let a guard bug silently allow or crash
         decision = Decision("ask", f"Jev guard error ({type(exc).__name__}: {exc}); confirm manually.",
@@ -117,8 +199,11 @@ def main(stdin=sys.stdin, stdout=sys.stdout, assess=jev.assess) -> int:
             **decision.log,
         })
 
-    if mode == "enforce" and decision.action != "pass":
-        stdout.write(output(decision) + "\n")
+    if host in ("agy", "pi"):
+        effective = decision if mode == "enforce" else Decision("pass")
+        stdout.write(output(effective, host) + "\n")
+    elif mode == "enforce" and decision.action != "pass":
+        stdout.write(output(decision, host) + "\n")
     return 0
 
 

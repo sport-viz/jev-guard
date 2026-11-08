@@ -100,6 +100,7 @@ jev_guard/
   questions.py  hazard questions and severity score
   jev.py        SDK wrapper (every failure → JevUnavailable → ask)
   policy.py     thresholds and routing
+  summary.py    step breakdown + risky-subcommand highlight (code + LLM fallback)
   audit.py      JSONL decision log
   config.py     mode, model, budgets, paths
 evals/          labeled cases and runner

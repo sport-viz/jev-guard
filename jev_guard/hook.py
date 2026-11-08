@@ -14,10 +14,11 @@ from pathlib import Path
 if __package__ in (None, ""):  # run as a script by Claude Code / agy / pi
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from jev_guard import audit, config, context, jev, policy, rules  # noqa: E402
+from jev_guard import audit, config, context, jev, policy, rules, summary  # noqa: E402
 
 RANK = {"pass": 0, "ask": 1, "deny": 2}
 HOSTS = {"claude", "agy", "pi"}
+CLAUDE_SHELL_TOOLS = {"Bash", "PowerShell"}
 
 
 @dataclass
@@ -26,6 +27,13 @@ class Decision:
     reason: str = ""
     stage: str = ""  # "hard_rule" | "rule" | "fast_path" | "jev" | "jev_unavailable" | "error"
     log: dict = field(default_factory=dict)
+    updated_input: dict | None = None
+
+
+def _build_updated_input(tool_name: str, tool_input: dict, tool_summary: summary.ToolSummary) -> dict | None:
+    if tool_name not in CLAUDE_SHELL_TOOLS or not tool_summary.description:
+        return None
+    return {**tool_input, "description": tool_summary.description}
 
 
 def _cli_host(argv: list[str] | None = None) -> str:
@@ -104,14 +112,22 @@ def evaluate(hook_input: dict, assess=jev.assess) -> Decision:
     tool_name = hook_input.get("tool_name", "")
     tool_input = hook_input.get("tool_input") or {}
     project = config.project_dir(hook_input.get("cwd", ""))
+    cwd = hook_input.get("cwd") or project
     home = config.home()
+    artifact_dir = hook_input.get("artifact_dir")
 
-    rule = rules.check(tool_name, tool_input, hook_input.get("cwd") or project, project, home,
-                       artifact_dir=hook_input.get("artifact_dir"))
+    rule = rules.check(tool_name, tool_input, cwd, project, home,
+                       artifact_dir=artifact_dir)
     log: dict = {"rule_action": rule.action, "rule_reasons": rule.reasons}
 
     if rule.action == "deny":
-        reason = (f"Jev guard blocked this command: {'; '.join(rule.reasons)}. This is never "
+        tool_summary = summary.summarize(tool_name, tool_input, cwd, project, home,
+                                         artifact_dir=artifact_dir, allow_llm=False)
+        log["summary"] = tool_summary.reason_detail
+        if tool_summary.risky:
+            log["risky"] = tool_summary.risky
+        detail = f" ({tool_summary.reason_detail})" if tool_summary.reason_detail else ""
+        reason = (f"Jev guard blocked this command: {'; '.join(rule.reasons)}{detail}. This is never "
                   "run automatically. If the user really wants it, they must run it themselves.")
         return Decision("deny", reason, "hard_rule", log)
     if rule.fast_path:
@@ -125,10 +141,20 @@ def evaluate(hook_input: dict, assess=jev.assess) -> Decision:
         assessment = assess(state, has_request)
     except jev.JevUnavailable as exc:
         log["error"] = str(exc)
+        tool_summary = summary.summarize(tool_name, tool_input, cwd, project, home,
+                                         artifact_dir=artifact_dir, allow_llm=True)
+        log["summary"] = tool_summary.reason_detail
+        if tool_summary.risky:
+            log["risky"] = tool_summary.risky
+        if tool_summary.used_llm:
+            log["summary_used_llm"] = True
         reason = f"Jev guard unavailable ({exc}); confirm manually."
         if rule.reasons:
             reason += f" Also: {'; '.join(rule.reasons)}."
-        return Decision("ask", reason, "jev_unavailable", log)
+        if tool_summary.reason_detail:
+            reason += f" · {tool_summary.reason_detail}"
+        updated_input = _build_updated_input(tool_name, tool_input, tool_summary)
+        return Decision("ask", reason, "jev_unavailable", log, updated_input)
 
     verdict = policy.route(assessment.nouls, assessment.severity, assessment.severity_confidence)
     log.update(nouls=assessment.nouls, severity=assessment.severity,
@@ -138,17 +164,33 @@ def evaluate(hook_input: dict, assess=jev.assess) -> Decision:
                jev_action=verdict.action, fired=verdict.fired)
 
     action = max(rule.action, verdict.action, key=RANK.__getitem__)
+    if action == "pass":
+        return Decision("pass", "", "jev", log)
+
+    tool_summary = summary.summarize(tool_name, tool_input, cwd, project, home,
+                                     artifact_dir=artifact_dir, allow_llm=(action == "ask"))
+    log["summary"] = tool_summary.reason_detail
+    if tool_summary.risky:
+        log["risky"] = tool_summary.risky
+    if tool_summary.used_llm:
+        log["summary_used_llm"] = True
+
     signals = policy.format_signals(verdict.fired, assessment.severity)
+    updated_input = None
     if action == "deny":
-        reason = (f"Jev guard blocked this {tool_name} call ({signals}). Find a safer way to do "
+        detail = f"{signals} · {tool_summary.reason_detail}" if tool_summary.reason_detail else signals
+        reason = (f"Jev guard blocked this {tool_name} call ({detail}). Find a safer way to do "
                   "the same job: narrower scope, reversible, inside the project. If the user "
                   "really wants this exact action, ask them to confirm or run it themselves.")
-    elif action == "ask":
-        parts = ([signals] if verdict.action != "pass" else []) + rule.reasons
-        reason = "Jev guard: " + "; ".join(parts)
     else:
-        reason = ""
-    return Decision(action, reason, "jev" if action == verdict.action else "rule", log)
+        parts = ([signals] if verdict.action != "pass" else []) + rule.reasons
+        base = "; ".join(parts)
+        if tool_summary.reason_detail:
+            reason = f"Jev guard: {base} · {tool_summary.reason_detail}" if base else f"Jev guard: {tool_summary.reason_detail}"
+        else:
+            reason = f"Jev guard: {base}"
+        updated_input = _build_updated_input(tool_name, tool_input, tool_summary)
+    return Decision(action, reason, "jev" if action == verdict.action else "rule", log, updated_input)
 
 
 def output(decision: Decision, host: str = "claude") -> str:
@@ -158,11 +200,14 @@ def output(decision: Decision, host: str = "claude") -> str:
         if decision.action != "pass" and decision.reason:
             payload["reason"] = decision.reason
         return json.dumps(payload)
-    return json.dumps({"hookSpecificOutput": {
+    hook_output: dict = {
         "hookEventName": "PreToolUse",
         "permissionDecision": decision.action,
         "permissionDecisionReason": decision.reason,
-    }})
+    }
+    if decision.updated_input is not None:
+        hook_output["updatedInput"] = decision.updated_input
+    return json.dumps({"hookSpecificOutput": hook_output})
 
 
 def main(stdin=sys.stdin, stdout=sys.stdout, assess=jev.assess, argv: list[str] | None = None) -> int:

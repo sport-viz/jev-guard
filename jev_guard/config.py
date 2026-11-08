@@ -15,6 +15,7 @@ MODEL = "jev-1.13.0"
 JEV_TIMEOUT_S = 4.0
 JEV_MAX_RETRIES = 1
 JEV_BACKOFF_MAX_S = 0.3
+LLM_SUMMARY_TIMEOUT_S = 2.5
 
 # Truncation budgets for what we send to Jev (large state lowers accuracy).
 USER_REQUEST_MAX_CHARS = 2000

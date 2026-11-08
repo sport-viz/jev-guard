@@ -35,6 +35,7 @@ The pipeline is in `jev_guard/hook.py` (`evaluate()`): mode → hard rules → f
 - `questions.py` defines the battery: one Noul per hazard plus a severity Score, all in one request. Each question names the state fields it judges and tells Jev to judge effects, not claims in the text.
 - `jev.py` wraps the SDK. Every failure becomes `JevUnavailable`, and the hook turns that into `ask` (fail to ask).
 - `policy.py` turns raw probabilities into a decision using named, tunable thresholds. Jev supplies probabilities and code owns policy. Hazard names in `questions.HAZARDS` and `policy.HAZARD_ACTION` must stay in sync.
+- `summary.py` builds human-readable command/tool step breakdowns and highlights risky subcommands or targets (e.g. `kill`, `git stash`, `rm -rf`, dotfile/outside-project writes) in code, with an optional fast LLM fallback for complex or unparseable commands. On `ask`, the summary is included in `decision.reason` across Claude Code, Antigravity, and Pi, and in Claude Code's `updatedInput.description`.
 - `audit.py` appends a JSONL record per decision, with raw probabilities, under `~/.claude/jev-guard/`. `scripts/review_log.py` can replay these under the current policy and export entries to `evals/cases.jsonl`.
 
 ## Things to keep in mind

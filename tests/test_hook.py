@@ -194,3 +194,24 @@ def test_pi_hook_protocol(env):
     assert hook.main(io.StringIO(json.dumps(pi_payload)), out, assess, argv=["--host", "pi"]) == 0
     res = json.loads(out.getvalue())
     assert res["decision"] == "ask" and "external_effect" in res["reason"]
+    assert "git push origin main (pushes to remote)" in res["reason"]
+
+
+def test_ask_includes_step_summary_risky_highlights_and_updated_description(env):
+    cmd = (
+        'kill 1865704; cd /z/nfldb2 && TYPESAFE_API_KEY= node --test --test-reporter=tap '
+        'test/nba/analysis/slates.test.js test/nfl/overview-model.test.js 2>&1 | grep -E "^# '
+        '(pass|fail)|^not ok|^    not ok"; git stash -q && TYPESAFE_API_KEY= node --test '
+        '--test-reporter=tap test/nba/analysis/slates.test.js test/nfl/overview-model.test.js 2>&1 | grep '
+        '-E "^# (pass|fail)|^    not ok"; git stash pop -q && git status --short'
+    )
+    out = run(env, "Bash", fake_assess({"system_change": 0.73}, 1.6), command=cmd, description="Run shell command")
+    assert out["permissionDecision"] == "ask"
+    reason = out["permissionDecisionReason"]
+    assert reason.startswith("Jev guard: system_change 0.73 · severity 1.6 (hard to undo)")
+    assert "risky: kill 1865704 (stops process), git stash -q (stashes uncommitted changes), git stash pop -q (restores stashed changes)" in reason
+    assert "steps: kill 1865704 → cd /z/nfldb2 → node --test slates.test.js overview-model.test.js | grep → git stash -q" in reason
+    updated_desc = out["updatedInput"]["description"]
+    assert "kill 1865704 → cd /z/nfldb2" in updated_desc
+    assert "[risky: kill 1865704 (stops process)" in updated_desc
+    assert out["updatedInput"]["command"] == cmd

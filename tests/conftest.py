@@ -15,12 +15,13 @@ class Env:
 
 @pytest.fixture(autouse=True)
 def no_network(monkeypatch):
-    """Unit tests never call TypeSafe; a test that reaches the live client sees a failure."""
-    from jev_guard import jev
+    """Unit tests never call TypeSafe or external LLMs."""
+    from jev_guard import jev, summary
 
     def offline(*args, **kwargs):
         raise ConnectionError("network disabled in unit tests")
     monkeypatch.setattr(jev, "ask_jev", offline)
+    monkeypatch.setattr(summary, "call_llm", lambda *a, **kw: None)
 
 
 @pytest.fixture

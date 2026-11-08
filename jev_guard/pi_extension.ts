@@ -51,13 +51,15 @@ function recentUserRequest(sessionManager: any): string | undefined {
   }
 }
 
-function summarizeTarget(toolName: string, input: Record<string, unknown>): string {
-  const raw =
-    (typeof input.command === "string" && input.command) ||
-    (typeof input.path === "string" && input.path) ||
-    JSON.stringify(input);
-  const singleLine = raw.replace(/\s+/g, " ").trim();
-  return singleLine.length > 140 ? `${singleLine.slice(0, 140)}...` : singleLine;
+function formatTarget(toolName: string, input: Record<string, unknown>): string {
+  if (typeof input.command === "string" && input.command) {
+    return input.command.trim();
+  }
+  const keys = Object.keys(input).filter((k) => input[k] !== undefined);
+  if (keys.length === 1 && typeof input.path === "string" && input.path) {
+    return input.path.trim();
+  }
+  return JSON.stringify(input, null, 2);
 }
 
 function runGuardHook(payload: Record<string, unknown>): Promise<GuardResult> {
@@ -167,7 +169,7 @@ export default function jevGuardExtension(pi: any): void {
     if (!ctx?.hasUI || typeof ctx?.ui?.confirm !== "function") {
       return { block: true, reason: `${reason} (blocked in non-interactive mode)` };
     }
-    const target = summarizeTarget(toolName, toolInput);
+    const target = formatTarget(toolName, toolInput);
     const confirmed = await ctx.ui.confirm(
       "Jev Guard",
       `${reason}\n\nAllow ${toolName}: ${target}?`,

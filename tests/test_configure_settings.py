@@ -48,6 +48,8 @@ def test_configure_agy_add_and_remove():
 def test_configure_pi_add_and_remove(env, tmp_path):
     ext = tmp_path / "extensions" / "jev-guard.ts"
     configure_settings.configure_pi(ext, remove=False)
-    assert ext.exists() and "jevGuardExtension" in ext.read_text()
+    text = ext.read_text()
+    assert ext.exists() and "jevGuardExtension" in text
+    assert "formatTarget" in text and ".slice(0, 140)" not in text
     configure_settings.configure_pi(ext, remove=True)
     assert not ext.exists()

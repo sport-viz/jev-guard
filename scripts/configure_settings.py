@@ -95,9 +95,10 @@ def _write_json_atomic(path: Path, data: dict) -> None:
 def configure_pi(ext_path: Path, remove: bool, dry_run: bool = False,
                  src_path: Path | None = None) -> str:
     """Install or remove the Pi extension at `~/.pi/agent/extensions/jev-guard.ts`."""
-    source = src_path or (GUARD / "jev_guard" / "pi_extension.ts")
+    source = src_path or (REPO / "jev_guard" / "pi_extension.ts")
     if not source.exists():
-        source = REPO / "jev_guard" / "pi_extension.ts"
+        guard = Path(os.environ.get("JEV_GUARD_HOME", HOME / ".claude" / "jev-guard"))
+        source = guard / "jev_guard" / "pi_extension.ts"
     content = source.read_text()
     if dry_run:
         return f"// {'remove' if remove else 'write'} {ext_path}\n" + ("" if remove else content)
